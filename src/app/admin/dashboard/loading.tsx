@@ -1,0 +1,2 @@
+import { AdminListSkeleton, Skeleton } from '@/components/Skeleton';
+export default function Loading() { return <main className="pt-28"><div className="container section"><Skeleton className="h-3 w-32" /><Skeleton className="mt-6 h-16 w-72" /><div className="mt-12 grid gap-4 sm:grid-cols-3">{[1, 2, 3].map((item) => <div className="card p-6" key={item}><Skeleton className="h-3 w-24" /><Skeleton className="mt-5 h-12 w-20" /></div>)}</div><AdminListSkeleton /></div></main>; }

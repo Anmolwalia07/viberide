@@ -1,0 +1,1 @@
+export async function sendBookingEmails(booking:{name:string;email:string}){void booking;if(!process.env.RESEND_API_KEY)return {sent:false,reason:'RESEND_API_KEY not configured'};return {sent:false,reason:'Connect Resend implementation before production'};}
