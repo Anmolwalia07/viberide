@@ -30,7 +30,7 @@ export default async function Fleet() {
             <article className="card p-5" key={vehicle.id}>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <Image
-                  src={vehicle.imageUrl || fleetImages[i % fleetImages.length]}
+                  src={fleetImages[i % fleetImages.length] || vehicle.imageUrl}
                   alt={vehicle.title}
                   fill
                   className="object-cover"

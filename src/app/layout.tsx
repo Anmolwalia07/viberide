@@ -1,3 +1,4 @@
-import './globals.css';import {Nav} from '@/components/Nav';import {Footer} from '@/components/Footer';import {getPublicContent} from '@/lib/content';import type {Metadata} from 'next';
+import './globals.css';import {Nav} from '@/components/Nav';import {Footer} from '@/components/Footer';import {getPublicContent} from '@/lib/content';import type {Metadata, Viewport} from 'next';
 export async function generateMetadata():Promise<Metadata>{const {site}=await getPublicContent();return {title:{default:`${site.name} — Premium Chauffeur Service`,template:`%s — ${site.name}`},description:site.description,metadataBase:new URL(site.url),alternates:{canonical:'/'},openGraph:{title:`${site.name} — Premium Chauffeur Service`,description:site.description,type:'website'}};}
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, maximumScale: 1, userScalable: false };
 export default async function RootLayout({children}:{children:React.ReactNode}){const {site:publicSite}=await getPublicContent();return <html lang="en-AU"><body><Nav site={publicSite}/>{children}<Footer site={publicSite}/></body></html>}

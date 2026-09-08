@@ -150,7 +150,7 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
           </div>
 
           <h2 className="serif mt-0.5 text-lg md:text-xl">
-            Request your chauffeur
+            Get a Quote
           </h2>
         </div>
 
@@ -189,7 +189,7 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
           mt-3
           grid
           min-w-0
-          grid-cols-2
+          grid-cols-[minmax(0,1fr)_minmax(0,1fr)]
           gap-x-2
           gap-y-2.5
         "
@@ -232,13 +232,17 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
         ================================================= */}
 
         <div className="col-span-1 min-w-0">
-          <Field label="Date">
+          <Field label="Date" hint="DD / MM / YYYY">
             <input
               name="date"
               type="date"
               required
+              aria-label="Pickup date, day month year"
+              onClick={(e) => e.currentTarget.showPicker?.()}
+              className="w-full min-w-0 max-w-full appearance-none"
             />
           </Field>
+          <p className="mt-1 text-[9px] text-neutral-600">Select your pickup date</p>
         </div>
 
         {/* =================================================
@@ -246,13 +250,17 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
         ================================================= */}
 
         <div className="col-span-1 min-w-0">
-          <Field label="Time">
+          <Field label="Time" hint="HH:MM">
             <input
               name="time"
               type="time"
               required
+              aria-label="Pickup time, hours and minutes"
+              onClick={(e) => e.currentTarget.showPicker?.()}
+              className="w-full min-w-0 max-w-full appearance-none"
             />
           </Field>
+          <p className="mt-1 text-[9px] text-neutral-600">Select your pickup time</p>
         </div>
 
         {/* =================================================
@@ -456,9 +464,11 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
 
 function Field({
   label,
+  hint,
   children,
 }: {
   label: string;
+  hint?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -471,7 +481,8 @@ function Field({
           text-neutral-500
         "
       >
-        {label}
+          <span>{label}</span>
+          {hint && <span className="ml-1 text-neutral-600">{hint}</span>}
       </span>
 
       <div

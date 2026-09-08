@@ -44,7 +44,7 @@ export function Hero() {
 
             <div className="mt-9 flex flex-wrap gap-3">
               <Link href="/booking" className="btn">
-                Request a Chauffeur
+                Book a Chauffeur
                 <ArrowUpRight size={15} />
               </Link>
 

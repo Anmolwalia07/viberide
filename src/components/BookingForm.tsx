@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { bookingSchema, type BookingInput } from '@/lib/validation';
 import { track } from '@/lib/analytics';
 
@@ -46,28 +46,36 @@ const tripTypes = [
   },
 ];
 
-const vehicles = [
+const fallbackVehicles = [
   {
-    name: 'Luxury Sedan',
-    description: 'Elegant and discreet',
-    capacity: 'Up to 3 passengers',
-  },
-  {
-    name: 'Executive Sedan',
+    name: 'Mercedes-Benz E-Class',
+    category: 'Executive Sedan',
     description: 'Premium business travel',
-    capacity: 'Up to 3 passengers',
+    capacity: 3,
   },
   {
-    name: 'Luxury Van',
+    name: 'Audi Q7',
+    category: 'Luxury Sedan',
+    description: 'Refined comfort with generous space',
+    capacity: 6,
+  },
+  {
+    name: 'Mercedes-Benz V-Class',
+    category: 'Luxury Van',
     description: 'Ideal for families and groups',
-    capacity: 'Up to 7 passengers',
-  },
-  {
-    name: 'No preference',
-    description: 'Let us recommend the right vehicle',
-    capacity: 'Based on your requirements',
+    capacity: 7,
   },
 ];
+
+const fleetNames = ['Luxury Sedan', 'Executive Sedan', 'Luxury Van', 'No preference'] as const;
+
+type BookingVehicle = {
+  id?: string;
+  name: string;
+  category: string;
+  description: string;
+  capacity?: number;
+};
 
 const melbourneLocations = [
   'Melbourne CBD',
@@ -76,7 +84,6 @@ const melbourneLocations = [
   'Richmond',
   'St Kilda',
   'Melbourne Airport',
-  'Avalon Airport',
 ];
 
 export default function BookingForm() {
@@ -85,6 +92,9 @@ export default function BookingForm() {
   const [bookingReference, setBookingReference] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [locating, setLocating] = useState(false);
+  const [selectedFleet, setSelectedFleet] = useState<string>('');
+  const [availableVehicles, setAvailableVehicles] = useState<BookingVehicle[]>(fallbackVehicles);
+  const stepContentRef = useRef<HTMLDivElement>(null);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -97,12 +107,43 @@ export default function BookingForm() {
     time: '',
     passengers: 1,
     luggage: 0,
-    vehicle: 'Luxury Sedan',
+    vehicle: '',
     name: '',
     email: '',
     phone: '',
     specialRequests: '',
   });
+
+  useEffect(() => {
+    let active = true;
+    void fetch('/api/vehicles').then(async (response) => {
+      if (!response.ok) return;
+      const result = await response.json();
+      if (active && Array.isArray(result.data) && result.data.length) {
+        const nextVehicles: BookingVehicle[] = result.data.map((vehicle: { id: string; name: string; category: string; description?: string; passenger_capacity?: number }) => ({
+          id: vehicle.id,
+          name: vehicle.name,
+          category: vehicle.category,
+          description: vehicle.description ?? '',
+          capacity: vehicle.passenger_capacity,
+        }));
+        setAvailableVehicles(nextVehicles);
+        setData((current) => ({
+          ...current,
+          vehicle: nextVehicles.some((vehicle) => vehicle.name === current.vehicle)
+            ? current.vehicle
+            : nextVehicles[0]?.name ?? current.vehicle,
+        }));
+      }
+    }).catch(() => undefined);
+    return () => { active = false; };
+  }, []);
+
+  const vehiclesForFleet = selectedFleet === 'No preference'
+    ? availableVehicles
+    : availableVehicles.filter((vehicle) => vehicle.category.toLowerCase() === selectedFleet.toLowerCase());
+
+  const selectedVehicle = availableVehicles.find((vehicle) => vehicle.name === data.vehicle);
 
   const update = (key: keyof BookingInput, value: string | number) => {
     setData((current) => ({
@@ -219,6 +260,10 @@ export default function BookingForm() {
       if (!data.passengers || data.passengers < 1) {
         newErrors.passengers = 'At least 1 passenger is required';
       }
+
+      if (!data.vehicle) {
+        newErrors.vehicle = 'Please select a vehicle';
+      }
     }
 
     if (step === 4) {
@@ -247,13 +292,9 @@ export default function BookingForm() {
 
     if (step < 5) {
       setStep((current) => current + 1);
-
-      /*
-       * IMPORTANT:
-       * Do NOT use window.scrollTo({ top: 0 }) here.
-       *
-       * The form stays where the customer is currently viewing it.
-       */
+      requestAnimationFrame(() => {
+        stepContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
       return;
     }
 
@@ -295,6 +336,9 @@ export default function BookingForm() {
   const back = () => {
     setErrors({});
     setStep((current) => Math.max(0, current - 1));
+    requestAnimationFrame(() => {
+      stepContentRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   };
 
   if (done) {
@@ -418,7 +462,7 @@ export default function BookingForm() {
         </div>
       </div>
 
-      <div className="p-6 md:p-10">
+      <div ref={stepContentRef} className="scroll-mt-6 p-6 md:scroll-mt-10 md:p-10">
         {/* STEP 0 */}
         {step === 0 && (
           <StepContainer
@@ -426,7 +470,7 @@ export default function BookingForm() {
             title="Where can we take you?"
             description="Private chauffeur services across Melbourne and Victoria."
           >
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="booking-trip-options grid grid-cols-2 gap-2.5 sm:gap-3">
               {tripTypes.map((trip) => (
                 <SelectionCard
                   key={trip.name}
@@ -434,16 +478,16 @@ export default function BookingForm() {
                   onClick={() => update('tripType', trip.name)}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-lg text-[#b9a47a]">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-base text-[#b9a47a] sm:h-11 sm:w-11 sm:rounded-xl sm:text-lg">
                       {trip.icon}
                     </div>
 
                     <div>
-                      <div className="text-sm font-medium text-white">
+                      <div className="text-xs font-medium text-white sm:text-sm">
                         {trip.name}
                       </div>
 
-                      <div className="mt-1 text-xs leading-5 text-neutral-500">
+                      <div className="mt-0.5 hidden text-[10px] leading-4 text-neutral-500 sm:mt-1 sm:block sm:text-xs sm:leading-5">
                         {trip.description}
                       </div>
                     </div>
@@ -519,28 +563,6 @@ export default function BookingForm() {
                   </div>
                 </PremiumField>
 
-                <button
-                  type="button"
-                  onClick={useCurrentLocation}
-                  disabled={locating}
-                  className="mt-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.12em] text-[#b9a47a] transition hover:text-white disabled:opacity-50"
-                >
-                  <svg
-                    width="13"
-                    height="13"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                  >
-                    <circle cx="12" cy="12" r="3" />
-                    <circle cx="12" cy="12" r="9" />
-                  </svg>
-
-                  {locating
-                    ? 'Finding your location...'
-                    : 'Use my current location'}
-                </button>
               </div>
 
               <div className="flex justify-center -my-2 relative z-10">
@@ -576,7 +598,11 @@ export default function BookingForm() {
                     key={location}
                     type="button"
                     onClick={() => update('destination', location)}
-                    className="rounded-full border border-white/10 px-3 py-2 text-[10px] text-neutral-500 transition hover:border-[#b9a47a]/40 hover:text-white"
+                    className={`rounded-full border px-3 py-2 text-[10px] transition ${
+                      data.destination.trim().toLowerCase() === location.toLowerCase()
+                        ? 'border-[#b9a47a] bg-[#b9a47a]/15 text-[#d8c28f]'
+                        : 'border-white/10 text-neutral-500 hover:border-[#b9a47a]/40 hover:text-white'
+                    }`}
                   >
                     {location}
                   </button>
@@ -598,9 +624,11 @@ export default function BookingForm() {
               <PremiumField
                 label="Pickup date"
                 error={errors.date}
+                hint="DD / MM / YYYY"
               >
                 <input
                   type="date"
+                  aria-label="Pickup date, day month year"
                   value={data.date}
                   min={new Date()
                     .toISOString()
@@ -608,19 +636,25 @@ export default function BookingForm() {
                   onChange={(e) =>
                     update('date', e.target.value)
                   }
+                  onClick={(e) => e.currentTarget.showPicker?.()}
+                  className="block w-full min-w-0 max-w-full"
                 />
               </PremiumField>
 
               <PremiumField
                 label="Pickup time"
                 error={errors.time}
+                hint="HH:MM"
               >
                 <input
                   type="time"
+                  aria-label="Pickup time, hours and minutes"
                   value={data.time}
                   onChange={(e) =>
                     update('time', e.target.value)
                   }
+                  onClick={(e) => e.currentTarget.showPicker?.()}
+                  className="block w-full min-w-0 max-w-full"
                 />
               </PremiumField>
             </div>
@@ -676,43 +710,47 @@ export default function BookingForm() {
             </div>
 
             <div className="mt-8">
-              <div className="mb-3 text-[10px] uppercase tracking-[0.18em] text-neutral-400">
-                Vehicle preference
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                {vehicles.map((vehicle) => (
-                  <SelectionCard
-                    key={vehicle.name}
-                    selected={data.vehicle === vehicle.name}
-                    onClick={() =>
-                      update('vehicle', vehicle.name)
-                    }
+              <div className="grid gap-5 sm:grid-cols-2">
+                <PremiumField label="Fleet">
+                  <select
+                    value={selectedFleet}
+                    onChange={(event) => {
+                      const nextFleet = event.target.value;
+                      const firstVehicle = (nextFleet === 'No preference' ? availableVehicles : availableVehicles.filter((vehicle) => vehicle.category.toLowerCase() === nextFleet.toLowerCase()))[0];
+                      setSelectedFleet(nextFleet);
+                      if (firstVehicle) update('vehicle', '');
+                    }}
+                    aria-label="Fleet"
+                    className="block w-full min-w-0 max-w-full"
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <div className="text-sm font-medium text-white">
-                          {vehicle.name}
-                        </div>
+                    <option value="" disabled>Select a fleet</option>
+                    {fleetNames.map((fleet) => (
+                      <option key={fleet} value={fleet}>{fleet}</option>
+                    ))}
+                  </select>
+                </PremiumField>
 
-                        <div className="mt-1 text-xs text-neutral-500">
-                          {vehicle.description}
-                        </div>
-
-                        <div className="mt-3 text-[10px] uppercase tracking-[0.12em] text-neutral-600">
-                          {vehicle.capacity}
-                        </div>
-                      </div>
-
-                      {data.vehicle === vehicle.name && (
-                        <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#b9a47a] text-[10px] text-black">
-                          ✓
-                        </div>
-                      )}
-                    </div>
-                  </SelectionCard>
-                ))}
+                <PremiumField label="Available vehicle">
+                <select
+                  value={data.vehicle}
+                  onChange={(event) => update('vehicle', event.target.value)}
+                  aria-label="Available vehicle"
+                  disabled={!selectedFleet}
+                  className="block w-full min-w-0 max-w-full"
+                >
+                  <option value="" disabled>{selectedFleet ? 'Select a vehicle' : 'Select a fleet first'}</option>
+                  {selectedFleet && <option value="No preference">No preference</option>}
+                  {vehiclesForFleet.map((vehicle) => (
+                    <option key={vehicle.name} value={vehicle.name}>
+                      {vehicle.name}
+                    </option>
+                  ))}
+                </select>
+                </PremiumField>
               </div>
+              <p className="mt-2 text-xs leading-5 text-neutral-500">
+                {selectedVehicle?.description ?? 'Choose a fleet and vehicle to continue.'}
+              </p>
             </div>
           </StepContainer>
         )}
@@ -995,7 +1033,7 @@ function SelectionCard({
     <button
       type="button"
       onClick={onClick}
-      className={`w-full rounded-2xl border p-5 text-left transition-all duration-200 ${
+      className={`booking-selection-card w-full rounded-xl border p-3 text-left transition-all duration-200 sm:rounded-2xl sm:p-5 ${
         selected
           ? 'border-[#b9a47a]/60 bg-[#b9a47a]/[0.07]'
           : 'border-white/10 bg-white/[0.015] hover:border-white/20 hover:bg-white/[0.03]'

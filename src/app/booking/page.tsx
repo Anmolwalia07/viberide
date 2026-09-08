@@ -2,7 +2,7 @@ import BookingForm from '@/components/BookingForm';
 
 export default function Booking() {
   return (
-    <main className="pt-28">
+    <main className="booking-page pt-20 md:pt-28">
       <div className="container section">
         <div className="eyebrow">Booking & quote</div>
 
