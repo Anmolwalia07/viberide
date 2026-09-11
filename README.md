@@ -1,39 +1,34 @@
-# [BUSINESS NAME] — Premium Chauffeur Website
+# Veloura Chauffeurs
 
-Production-oriented Next.js App Router starter for an Australian chauffeur business.
+Static Next.js website for an Australian premium chauffeur service.
 
 ## Stack
-Next.js · TypeScript · Tailwind CSS · Supabase/PostgreSQL · Framer Motion · React Three Fiber-ready architecture · Zod · Vercel
+Next.js · TypeScript · Tailwind CSS · Framer Motion-ready UI · Zod · Vercel
 
 ## Local development
-1. Copy `.env.example` to `.env.local` and fill verified values.
-2. Install dependencies with `npm install`.
-3. Run `npm run dev`.
-4. Visit `http://localhost:3000`.
+1. Install dependencies with `npm install`.
+2. Run `npm run dev`.
+3. Visit `http://localhost:3000`.
 
-## Supabase
-Create a Supabase project, then run `supabase/migrations/001_initial.sql`, `supabase/migrations/002_seed_initial_content.sql`, `supabase/migrations/003_booking_statuses.sql`, `supabase/migrations/004_contact_and_business_settings.sql`, and `supabase/migrations/005_booking_references.sql` in the SQL editor or via Supabase CLI. For a new project, run them in that order. For an existing project that already ran the earlier migrations, run only the migrations that have not yet been applied.
+The production build is configured for static export and writes the deployable site to `out/`.
 
-```sql
-insert into public.admins (id)
-select id from auth.users where email = 'verified-admin@example.com'
-on conflict (id) do nothing;
-```
+## Content
 
-The admin panel is available at `/admin`. The Auth account must exist in Supabase Authentication and its user ID must be present in `public.admins`.
+Business details, services, fleet, FAQs, and service areas are maintained in `src/config/site.ts`. Update that file when business information changes.
 
-The service role key is server-only. Never prefix it with `NEXT_PUBLIC_` and never send it to the browser.
+Booking and contact forms open a prefilled email draft using the configured business email. No server, database, authentication, or admin panel is included.
 
 ## Checks
 - `npm run typecheck`
 - `npm run lint`
 - `npm run build`
 
-## Vercel
-Import the Git repository, add the `.env.example` variables in Vercel Project Settings, deploy, then set the production domain in `NEXT_PUBLIC_SITE_URL`. Do not commit `.env.local`.
+## Deployment
+
+Run `npm run build`, then deploy the generated `out/` directory to Vercel, Netlify, GitHub Pages, or any static hosting provider.
 
 ## Business information still required
-Verified business name, phone, email, address, domain, social links, actual fleet models/images/capacities, operating service areas, pricing rules, booking/cancellation/payment policies, approved testimonials, privacy/terms text, Supabase project, email provider and optional Google Maps credentials.
+Verified business name, phone, email, address, domain, social links, actual fleet models/images/capacities, operating service areas, booking/cancellation/payment policies, approved testimonials, and reviewed privacy/terms text.
 
 ## Notes
-The booking UI currently provides a safe request workflow but does not persist records until the server-side Supabase booking action is connected. Email is intentionally abstracted until provider credentials are supplied. Local pages are deliberately limited to a few useful locations rather than generating thin SEO pages.
+The site deliberately uses a simple email-draft workflow instead of pretending to persist bookings. Local pages are limited to useful service areas rather than thin SEO pages.

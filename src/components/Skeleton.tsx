@@ -18,6 +18,6 @@ function BookingSkeleton() {
   return <div className="card mt-14 p-6 md:p-10"><div className="flex justify-between"><Skeleton className="h-3 w-36" /><Skeleton className="h-3 w-20" /></div><Skeleton className="mt-6 h-1 w-full" /><div className="mt-10 grid gap-5 sm:grid-cols-2">{[1, 2, 3, 4, 5, 6].map((item) => <Skeleton className="h-16 w-full" key={item} />)}</div></div>;
 }
 
-export function AdminListSkeleton() {
+export function ListSkeleton() {
   return <div className="mt-10 grid gap-4">{[1, 2, 3].map((item) => <div className="card grid gap-4 p-6 md:grid-cols-[1fr_auto]" key={item}><div><Skeleton className="h-3 w-32" /><Skeleton className="mt-4 h-8 w-48" /><Skeleton className="mt-3 h-4 w-full max-w-xl" /></div><Skeleton className="h-12 w-32" /></div>)}</div>;
 }

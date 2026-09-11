@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 import { ArrowUpRight, CheckCircle2, Loader2 } from 'lucide-react';
+import { site } from '@/config/site';
 
 export function ContactEnquiryForm() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -10,23 +11,14 @@ export function ContactEnquiryForm() {
     event.preventDefault();
     setStatus('sending');
     const form = new FormData(event.currentTarget);
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: form.get('name'),
-        email: form.get('email'),
-        phone: form.get('phone'),
-        message: form.get('message'),
-        website: form.get('website'),
-      }),
-    });
-
-    setStatus(response.ok ? 'success' : 'error');
-    if (response.ok) event.currentTarget.reset();
+    const subject = `Website enquiry from ${String(form.get('name') || '')}`;
+    const body = [`Name: ${form.get('name') || ''}`, `Email: ${form.get('email') || ''}`, `Phone: ${form.get('phone') || ''}`, '', String(form.get('message') || '')].join('\n');
+    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setStatus('success');
+    event.currentTarget.reset();
   }
 
-  if (status === 'success') return <div className="card grid gap-4 p-7 md:p-10" role="status"><CheckCircle2 className="text-[#b9a47a]" size={24} /><h2 className="serif text-3xl">Enquiry received.</h2><p className="text-sm leading-6 text-neutral-400">Thank you. The chauffeur team will review your message and respond using the details provided.</p></div>;
+  if (status === 'success') return <div className="card grid gap-4 p-7 md:p-10" role="status"><CheckCircle2 className="text-[#b9a47a]" size={24} /><h2 className="serif text-3xl">Email draft opened.</h2><p className="text-sm leading-6 text-neutral-400">Finish sending the prefilled enquiry from your email application.</p></div>;
 
   return <form onSubmit={submit} className="card grid gap-5 p-7 md:p-10">
     <Field label="Name" name="name" autoComplete="name" required />

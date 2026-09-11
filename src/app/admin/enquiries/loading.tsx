@@ -1,2 +1,0 @@
-import { AdminListSkeleton, Skeleton } from '@/components/Skeleton';
-export default function Loading() { return <main className="pt-28"><div className="container section"><Skeleton className="h-3 w-32" /><Skeleton className="mt-6 h-16 w-72" /><AdminListSkeleton /></div></main>; }

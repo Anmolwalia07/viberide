@@ -47,34 +47,58 @@ export const services = [
 
 export const fleet = [
   {
-    id: 'audi-q7',
-    title: 'Audi Q7',
-    description:
-      'A premium luxury SUV combining generous space, refined comfort and a commanding presence for executive and private journeys.',
+    id: 'audi-suv',
+    title: 'Audi SUV',
+    imageUrl: '/Audi SUV.webp',
+    description: 'A premium luxury SUV combining generous space, refined comfort and a commanding presence for executive and private journeys.',
     capacity: 6,
     luggageCapacity: 4,
-    features:
-      'Premium leather interior · Climate control · Spacious cabin · Executive comfort',
+    features: 'Premium leather interior · Climate control · Spacious cabin · Executive comfort',
   },
   {
-    id: 'mercedes-v-class',
-    title: 'Mercedes-Benz V-Class',
-    description:
-      'A sophisticated luxury people mover designed for families, corporate groups and longer journeys requiring additional space.',
-    capacity: 7,
-    luggageCapacity: 6,
-    features:
-      'Luxury interior · Flexible seating · Generous luggage space · Easy access',
-  },
-  {
-    id: 'executive-sedan',
-    title: 'Mercedes-Benz E-Class',
-    description:
-      'A refined executive sedan offering a quiet, comfortable cabin for corporate travel, airport transfers and private journeys.',
+    id: 'audi-sedan',
+    title: 'Audi Sedan',
+    imageUrl: '/Audi Sedan.webp',
+    description: 'A refined executive sedan offering a quiet, comfortable cabin for corporate travel, airport transfers and private journeys.',
     capacity: 3,
     luggageCapacity: 2,
-    features:
-      'Leather interior · Quiet cabin · Rear comfort · Business-ready space',
+    features: 'Leather interior · Quiet cabin · Rear comfort · Business-ready space',
+  },
+  {
+    id: 'bmw-sedan',
+    title: 'BMW Sedan',
+    imageUrl: '/BMW Sedan.webp',
+    description: 'A luxurious and dynamic sedan perfect for executive transport, offering superior comfort and advanced technology.',
+    capacity: 3,
+    luggageCapacity: 2,
+    features: 'Luxury interior · Premium sound · Advanced climate control · Smooth ride',
+  },
+  {
+    id: 'mercedes-suv',
+    title: 'Mercedes SUV',
+    imageUrl: '/Mercedes SUV.webp',
+    description: 'A top-tier luxury SUV providing exceptional comfort, elevated views, and ample space for luggage and passengers.',
+    capacity: 6,
+    luggageCapacity: 4,
+    features: 'Premium leather · Panoramic roof · Advanced safety · Spacious seating',
+  },
+  {
+    id: 'mercedes-sedan',
+    title: 'Mercedes Sedan',
+    imageUrl: '/Mercedes Sedan.webp',
+    description: 'The epitome of luxury sedans, delivering an unparalleled ride experience for discerning travelers.',
+    capacity: 3,
+    luggageCapacity: 2,
+    features: 'Executive seating · Ambient lighting · Whisper-quiet cabin · Premium finishes',
+  },
+  {
+    id: 'mercedes-van',
+    title: 'Mercedes Van',
+    imageUrl: '/Mercedes Van.webp',
+    description: 'A sophisticated luxury people mover designed for families, corporate groups and longer journeys requiring additional space.',
+    capacity: 7,
+    luggageCapacity: 6,
+    features: 'Luxury interior · Flexible seating · Generous luggage space · Easy access',
   },
 ];
 

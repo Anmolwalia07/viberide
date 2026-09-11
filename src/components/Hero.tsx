@@ -43,8 +43,8 @@ export function Hero() {
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/booking" className="btn">
-                Book a Chauffeur
+              <Link href="/#quote-form" className="btn">
+                GET A QUOTE
                 <ArrowUpRight size={15} />
               </Link>
 

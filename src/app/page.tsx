@@ -6,7 +6,7 @@ import { Hero } from '@/components/Hero';
 import { Reveal } from '@/components/Reveal';
 import { SectionHeader } from '@/components/SectionHeader';
 import { faqs } from '@/config/site';
-import { getPublicContent } from '@/lib/content';
+import { getSiteContent } from '@/lib/content';
 
 const fleetImages = [
   'https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1000&q=80',
@@ -17,8 +17,8 @@ const fleetImages = [
 const featureImage =
   'https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=1200&q=80';
 
-export default async function Home() {
-  const { services, fleet, site } = await getPublicContent();
+export default function Home() {
+  const { services, fleet, site } = getSiteContent();
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -314,16 +314,8 @@ export default async function Home() {
           </h2>
 
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/booking" className="btn">
-              Book a Chauffeur
-              <ArrowUpRight size={15} />
-            </Link>
-
-            <Link
-              href="/contact"
-              className="btn secondary !border-black !text-black"
-            >
-              Get a Quote
+            <Link href="/#quote-form" className="btn">
+              GET A QUOTE
               <ArrowUpRight size={15} />
             </Link>
           </div>

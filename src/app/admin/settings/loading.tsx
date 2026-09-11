@@ -1,2 +1,0 @@
-import { Skeleton } from '@/components/Skeleton';
-export default function Loading() { return <main className="pt-28"><div className="container section"><Skeleton className="h-3 w-32" /><Skeleton className="mt-6 h-16 w-72" /><div className="card mt-10 grid gap-5 p-7"><Skeleton className="h-12 w-full" /><Skeleton className="h-12 w-full" /><Skeleton className="h-12 w-full" /><Skeleton className="h-12 w-32" /></div></div></main>; }

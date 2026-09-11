@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { getPublicContent } from '@/lib/content';
+import { getSiteContent } from '@/lib/content';
 
 const fleetImages = [
   'https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1000&q=80',
@@ -7,8 +7,8 @@ const fleetImages = [
   'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1000&q=80',
 ];
 
-export default async function Fleet() {
-  const { fleet } = await getPublicContent();
+export default function Fleet() {
+  const { fleet } = getSiteContent();
   return (
     <main className="pt-28">
       <div className="container section">
@@ -30,7 +30,7 @@ export default async function Fleet() {
             <article className="card p-5" key={vehicle.id}>
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <Image
-                  src={fleetImages[i % fleetImages.length] || vehicle.imageUrl}
+                  src={vehicle.imageUrl || fleetImages[i % fleetImages.length]}
                   alt={vehicle.title}
                   fill
                   className="object-cover"

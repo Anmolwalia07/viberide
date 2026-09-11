@@ -5,14 +5,22 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Loader2,
+  Phone,
 } from 'lucide-react';
 import { track } from '@/lib/analytics';
+import { site } from '@/config/site';
+
+const tripTypes = ['Airport Transfer', 'Point-to-Point', 'Corporate', 'Event', 'Hourly Chauffeur', 'Other'];
+const fleetOptions = ['Luxury Sedan', 'Executive Sedan', 'Luxury Van', 'No preference'];
 
 export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOOKED' | 'QUOTED' }) {
   const [status, setStatus] = useState<
     'idle' | 'sending' | 'success' | 'error'
   >('idle');
   const [bookingReference, setBookingReference] = useState('');
+  const [selectedFleet, setSelectedFleet] = useState('');
+  const [passengers, setPassengers] = useState(1);
+  const [luggage, setLuggage] = useState(0);
 
   const [started, setStarted] = useState(false);
 
@@ -33,43 +41,33 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
 
     const form = new FormData(e.currentTarget);
 
-    const specialRequests = form
-      .getAll('specialRequests')
-      .map(String)
-      .filter(Boolean);
+    const specialRequests = [
+      String(form.get('specialRequests') || ''),
+      form.get('babySeat') ? 'Baby seat' : '',
+      form.get('boosterSeat') ? 'Booster seat' : '',
+    ].filter(Boolean).join(', ');
 
     const data = {
       requestType,
-      tripType: 'Point-to-Point',
+      tripType: String(form.get('tripType') || ''),
       pickup: String(form.get('pickup') || ''),
       destination: String(form.get('destination') || ''),
       date: String(form.get('date') || ''),
       time: String(form.get('time') || ''),
-      passengers: 1,
-      luggage: 0,
+      passengers,
+      luggage,
       vehicle: 'No preference',
       name: String(form.get('name') || ''),
       phone: String(form.get('phone') || ''),
       email: String(form.get('email') || ''),
-      specialRequests: specialRequests.join(', '),
+      specialRequests,
       website: String(form.get('website') || ''),
     };
 
     try {
-      const res = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!res.ok) {
-        throw new Error('Unable to submit');
-      }
-
-      const result = await res.json();
-      setBookingReference(result.bookingReference ?? '');
+      const body = [`Request type: ${requestType === 'QUOTED' ? 'Quote' : 'Booking'}`, `Trip type: ${data.tripType}`, `Pickup: ${data.pickup}`, `Destination: ${data.destination}`, `Date: ${data.date}`, `Time: ${data.time}`, `Passengers: ${data.passengers}`, `Luggage: ${data.luggage}`, `Fleet: ${selectedFleet || 'No preference'}`, `Vehicle: ${data.vehicle}`, `Name: ${data.name}`, `Phone: ${data.phone}`, `Email: ${data.email}`, `Special requests: ${data.specialRequests}`].join('\n');
+      window.location.href = `mailto:${site.email}?subject=${encodeURIComponent('Website quote request')}&body=${encodeURIComponent(body)}`;
+      setBookingReference('Email draft');
       setStatus('success');
 
       track('booking_submitted', {
@@ -119,10 +117,11 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
 
   return (
     <form
+      id="quote-form"
       onSubmit={submit}
       onFocus={begin}
       className="
-        home-booking-panel
+        home-booking-panel quote-light-panel
         w-full
         max-w-3xl
         min-w-0
@@ -154,19 +153,27 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
           </h2>
         </div>
 
-        <span
+        <a
+          href="tel:0424136433"
           className="
-            hidden
             shrink-0
-            text-[8px]
-            uppercase
-            tracking-[.14em]
-            text-neutral-600
-            sm:block
+            inline-flex
+            items-center
+            gap-1.5
+            rounded-full
+            bg-[#b9a47a]
+            px-3
+            py-1.5
+            text-xs
+            font-medium
+            text-white
+            transition-colors
+            hover:bg-[#a69269]
           "
         >
-          Fast enquiry
-        </span>
+          <Phone size={12} />
+          <span>Instant Call</span>
+        </a>
       </div>
 
       {/* =================================================
@@ -194,7 +201,16 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
           gap-y-2.5
         "
       >
-        <p className="col-span-2 text-xs leading-5 text-neutral-500">Start with the essentials. We will confirm availability and details with you directly.</p>
+        <p className="col-span-2 text-sm leading-6 text-neutral-600">Start with the essentials. We will confirm availability and details with you directly.</p>
+
+        <div className="col-span-2 min-w-0">
+          <Field label="What do you need?">
+            <select name="tripType" defaultValue="" required>
+              <option value="" disabled>Select a service</option>
+              {tripTypes.map((tripType) => <option key={tripType} value={tripType}>{tripType}</option>)}
+            </select>
+          </Field>
+        </div>
         {/* =================================================
             PICKUP
         ================================================= */}
@@ -263,6 +279,27 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
           <p className="mt-1 text-[9px] text-neutral-600">Select your pickup time</p>
         </div>
 
+        <div className="col-span-1 min-w-0">
+          <Field label="Passengers">
+            <div className="quote-counter"><button type="button" aria-label="Decrease passengers" onClick={() => setPassengers(Math.max(1, passengers - 1))}>-</button><output>{passengers}</output><button type="button" aria-label="Increase passengers" onClick={() => setPassengers(passengers + 1)}>+</button></div>
+          </Field>
+        </div>
+
+        <div className="col-span-1 min-w-0">
+          <Field label="Suitcases">
+            <div className="quote-counter"><button type="button" aria-label="Decrease suitcases" onClick={() => setLuggage(Math.max(0, luggage - 1))}>-</button><output>{luggage}</output><button type="button" aria-label="Increase suitcases" onClick={() => setLuggage(luggage + 1)}>+</button></div>
+          </Field>
+        </div>
+
+        <div className="col-span-2 min-w-0">
+          <Field label="Fleet">
+            <select value={selectedFleet} onChange={(event) => setSelectedFleet(event.target.value)}>
+              <option value="">Select a fleet</option>
+              {fleetOptions.map((fleet) => <option key={fleet} value={fleet}>{fleet}</option>)}
+            </select>
+          </Field>
+        </div>
+
         {/* =================================================
             FULL NAME
         ================================================= */}
@@ -316,61 +353,16 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
         ================================================= */}
 
         <div className="col-span-2 min-w-0">
-          <div className="grid gap-1.5">
-            <span className="text-[8px] uppercase tracking-[.12em] text-neutral-500">Special requests <span className="ml-1 text-[#b9a47a]">(optional)</span></span>
-
-            <div
-              className="
-                grid
-                grid-cols-2
-                gap-x-2
-                gap-y-0
-
-                sm:grid-cols-3
-
-                md:flex
-                md:flex-wrap
-                md:gap-x-4
-              "
-            >
-              <Checkbox
-                name="specialRequests"
-                value="Child seat"
-                label="Child seat"
-              />
-
-              <Checkbox
-                name="specialRequests"
-                value="Booster seat"
-                label="Booster seat"
-              />
-
-              <Checkbox
-                name="specialRequests"
-                value="Meet & greet"
-                label="Meet & greet"
-              />
-
-              <Checkbox
-                name="specialRequests"
-                value="Extra luggage"
-                label="Extra luggage"
-              />
-
-              <Checkbox
-                name="specialRequests"
-                value="Airport assistance"
-                label="Airport assistance"
-              />
-
-              <Checkbox
-                name="specialRequests"
-                value="Other"
-                label="Other"
-              />
-            </div>
-          </div>
+          <Field label="Special requests" hint="Optional">
+            <textarea name="specialRequests" rows={3} placeholder="Child seat, accessibility, extra stops or anything else we should know" />
+          </Field>
         </div>
+      </div>
+
+      <div className="mt-3 grid gap-2 border-t border-[#d5d0c5] pt-3 sm:grid-cols-2">
+        <span className="col-span-full text-[11px] uppercase tracking-[.12em] text-[#4f4a42]">Additional requirements <span className="text-[#806b3d]">(optional)</span></span>
+        <label className="flex items-center gap-2 text-sm text-[#4f4a42]"><input name="babySeat" type="checkbox" className="h-4 w-4 accent-[#806b3d]" />Baby seat</label>
+        <label className="flex items-center gap-2 text-sm text-[#4f4a42]"><input name="boosterSeat" type="checkbox" className="h-4 w-4 accent-[#806b3d]" />Booster seat</label>
       </div>
 
       {/* =================================================
@@ -414,7 +406,7 @@ export function HomeBookingForm({ requestType = 'QUOTED' }: { requestType?: 'BOO
             </>
           ) : (
             <>
-              {requestType === 'BOOKED' ? 'Book a Chauffeur' : 'Get a Quote'}
+              {requestType === 'BOOKED' ? 'GET A QUOTE' : 'Get a Quote'}
               <ArrowUpRight size={13} />
             </>
           )}
@@ -516,6 +508,20 @@ function Field({
 
           [&_input]:disabled:cursor-not-allowed
           [&_input]:disabled:opacity-50
+
+          [&_select]:box-border
+          [&_select]:block
+          [&_select]:w-full
+          [&_select]:min-w-0
+          [&_select]:max-w-full
+
+          [&_textarea]:box-border
+          [&_textarea]:block
+          [&_textarea]:h-auto
+          [&_textarea]:min-h-[96px]
+          [&_textarea]:w-full
+          [&_textarea]:min-w-0
+          [&_textarea]:max-w-full
         "
       >
         {children}
@@ -524,56 +530,3 @@ function Field({
   );
 }
 
-/* =======================================================
-   CHECKBOX
-======================================================= */
-
-function Checkbox({
-  name,
-  value,
-  label,
-}: {
-  name: string;
-  value: string;
-  label: string;
-}) {
-  return (
-    <label
-      className="
-        flex
-        min-w-0
-        cursor-pointer
-        items-center
-        gap-1.5
-        py-0.5
-        text-neutral-500
-        transition-colors
-        hover:text-neutral-300
-      "
-    >
-      <input
-        type="checkbox"
-        name={name}
-        value={value}
-        className="
-          h-3
-          w-3
-          shrink-0
-          cursor-pointer
-          accent-white
-        "
-      />
-
-      <span
-        className="
-          min-w-0
-          text-[9px]
-          leading-4
-          tracking-normal
-        "
-      >
-        {label}
-      </span>
-    </label>
-  );
-}

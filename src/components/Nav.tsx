@@ -55,10 +55,10 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
 
           {/* Booking */}
           <Link
-            href="/booking"
+            href="/#quote-form"
             className="btn"
           >
-            Book a Chauffeur
+            GET A QUOTE
           </Link>
         </div>
 
@@ -116,11 +116,11 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
 
             {/* Booking */}
             <Link
-              href="/booking"
+              href="/#quote-form"
               onClick={closeMenu}
               className="btn flex min-h-12 items-center justify-center"
             >
-              Book a Chauffeur
+              GET A QUOTE
             </Link>
           </div>
         </nav>
