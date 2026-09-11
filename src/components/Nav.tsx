@@ -12,7 +12,6 @@ const links = [
   { href: '/fleet', label: 'Fleet' },
   { href: '/about', label: 'About' },
   { href: '/service-areas', label: 'Service Areas' },
-  { href: '/contact', label: 'Contact' },
 ];
 
 export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
