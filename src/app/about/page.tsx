@@ -1,1 +1,41 @@
-export default function About(){return <main className="pt-28"><div className="container section"><div className="eyebrow">About</div><h1 className="serif mt-5 max-w-5xl text-6xl md:text-8xl">The art of<br/><em>arriving well.</em></h1><div className="mt-14 grid gap-12 md:grid-cols-2"><p className="text-xl leading-8 text-neutral-300">A premium chauffeur brand should feel less like transport and more like a trusted extension of your day.</p><div className="text-sm leading-7 text-neutral-400"><p>[BUSINESS NAME] is a placeholder identity pending confirmed company information. Replace this page with the founder story, verified operating history, service philosophy and credentials supplied by the business.</p><p className="mt-5">No claims about years in operation, certifications, fleet size or customer volume have been invented.</p></div></div></div></main>}
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Us | Veloura Chauffeurs',
+  description: 'Learn about Veloura Chauffeurs, our philosophy, and our dedication to providing premium private travel experiences in Melbourne.',
+  alternates: {
+    canonical: '/about',
+  },
+  openGraph: {
+    title: 'About Us | Veloura Chauffeurs',
+    description: 'Learn about Veloura Chauffeurs, our philosophy, and our dedication to providing premium private travel experiences in Melbourne.',
+    url: 'https://veloura-chauffeurs.vercel.app/about',
+  }
+};
+
+export default function About() {
+  return (
+    <main className="pt-28">
+      <div className="container section">
+        <div className="eyebrow">About</div>
+        <h1 className="serif mt-5 max-w-5xl text-6xl md:text-8xl">
+          The art of<br />
+          <em>arriving well.</em>
+        </h1>
+        <div className="mt-14 grid gap-12 md:grid-cols-2">
+          <p className="text-xl leading-8 text-neutral-300">
+            A premium chauffeur brand should feel less like transport and more like a trusted extension of your day.
+          </p>
+          <div className="text-sm leading-7 text-neutral-400">
+            <p>
+              [BUSINESS NAME] is a placeholder identity pending confirmed company information. Replace this page with the founder story, verified operating history, service philosophy and credentials supplied by the business.
+            </p>
+            <p className="mt-5">
+              No claims about years in operation, certifications, fleet size or customer volume have been invented.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
