@@ -1,6 +1,6 @@
-# VideRide Chauffeurs
+# VibeRide Chauffeurs
 
-VideRide Chauffeurs is a premium private chauffeur service operating in Melbourne, Victoria, Australia.
+VibeRide Chauffeurs is a premium private chauffeur service operating in Melbourne, Victoria, Australia.
 We provide luxurious, reliable, and discreet transportation for executives, VIPs, and private clients.
 
 ## Services
@@ -22,5 +22,5 @@ Our modern fleet consists of premium European vehicles:
 
 ## Contact & Booking
 Users can request a quote or book directly through our website via the quote form on the homepage.
-Phone: (Available on request)
+Phone: +61 424 136 433
 Email: (Available on request)

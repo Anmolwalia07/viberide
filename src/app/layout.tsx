@@ -1,6 +1,7 @@
 import './globals.css';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
+import { WhatsAppFloatingButton } from '@/components/WhatsAppFloatingButton';
 import { getSiteContent } from '@/lib/content';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav site={publicSite} />
         {children}
         <Footer site={publicSite} />
+        <WhatsAppFloatingButton phone={publicSite.whatsapp} />
       </body>
     </html>
   );

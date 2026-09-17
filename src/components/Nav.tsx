@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, Phone, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { site as defaultSite } from '@/config/site';
 
@@ -48,9 +48,21 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden items-center gap-5 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           {/* WhatsApp */}
-          {isConfigured(site.whatsapp) && <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" className="flex h-10 w-10 items-center justify-center border border-green-500/40 text-green-400 transition hover:border-green-400 hover:bg-green-400/10"><FaWhatsapp size={21} className="text-green-500" /></a>}
+          {isConfigured(site.whatsapp) && <a href={`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" className="flex h-10 w-10 items-center justify-center border border-green-500/40 text-green-400 transition hover:border-green-400 hover:bg-green-400/10"><FaWhatsapp size={21} className="text-green-500" /></a>}
+
+          {/* Contact Number */}
+          {isConfigured(site.phone) && (
+            <a
+              href={`tel:${site.phone.replace(/\s+/g, '')}`}
+              className="phone-blink flex items-center gap-2.5 text-[15px] lg:text-[17px] font-bold tracking-wide text-white transition-colors hover:text-[#b9a47a] whitespace-nowrap"
+              aria-label={`Call us at ${site.phone}`}
+            >
+              <Phone size={18} className="text-[#b9a47a] shrink-0" />
+              <span>{site.phone}</span>
+            </a>
+          )}
 
           {/* Booking */}
           <Link
@@ -61,27 +73,40 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          type="button"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          aria-controls="mobile-navigation"
-          className="relative z-50 flex h-11 w-11 items-center justify-center md:hidden"
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? (
-            <X
-              size={24}
-              strokeWidth={1.5}
-            />
-          ) : (
-            <Menu
-              size={24}
-              strokeWidth={1.5}
-            />
+        {/* Mobile Header Actions */}
+        <div className="flex items-center gap-1 md:hidden">
+          {isConfigured(site.phone) && (
+            <a
+              href={`tel:${site.phone.replace(/\s+/g, '')}`}
+              aria-label={`Call us at ${site.phone}`}
+              className="phone-blink relative z-50 flex h-11 w-11 items-center justify-center text-[#b9a47a] transition hover:text-white"
+            >
+              <Phone size={20} />
+            </a>
           )}
-        </button>
+
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            className="relative z-50 flex h-11 w-11 items-center justify-center"
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? (
+              <X
+                size={24}
+                strokeWidth={1.5}
+              />
+            ) : (
+              <Menu
+                size={24}
+                strokeWidth={1.5}
+              />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation */}
@@ -111,7 +136,19 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
           {/* Mobile CTA */}
           <div className="mt-5 grid gap-3 border-t border-white/10 pt-5">
             {/* WhatsApp */}
-            {isConfigured(site.whatsapp) && <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="flex min-h-12 items-center justify-center gap-2 border border-green-500/30 text-green-400 transition hover:border-green-400 hover:bg-green-400/10"><FaWhatsapp size={20} /><span>WhatsApp</span></a>}
+            {isConfigured(site.whatsapp) && <a href={`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="flex min-h-12 items-center justify-center gap-2 border border-green-500/30 text-green-400 transition hover:border-green-400 hover:bg-green-400/10"><FaWhatsapp size={20} /><span>WhatsApp</span></a>}
+
+            {/* Call */}
+            {isConfigured(site.phone) && (
+              <a
+                href={`tel:${site.phone.replace(/\s+/g, '')}`}
+                onClick={closeMenu}
+                className="btn secondary phone-blink flex min-h-12 items-center justify-center gap-2 text-sm font-bold tracking-wide"
+              >
+                <Phone size={17} className="text-[#b9a47a]" />
+                <span>Call {site.phone}</span>
+              </a>
+            )}
 
             {/* Booking */}
             <Link

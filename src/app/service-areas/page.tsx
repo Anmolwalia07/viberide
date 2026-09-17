@@ -3,15 +3,15 @@ import { getSiteContent } from '@/lib/content';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Service Areas | VideRide Chauffeurs Melbourne',
+  title: 'Service Areas | VibeRide Chauffeurs Melbourne',
   description: 'View our verified operating areas across Melbourne and Victoria for private chauffeur journeys, airport transfers and corporate travel.',
   alternates: {
     canonical: '/service-areas',
   },
   openGraph: {
-    title: 'Service Areas | VideRide Chauffeurs Melbourne',
+    title: 'Service Areas | VibeRide Chauffeurs Melbourne',
     description: 'View our verified operating areas across Melbourne and Victoria for private chauffeur journeys, airport transfers and corporate travel.',
-    url: 'https://videride-chauffeurs.vercel.app/service-areas',
+    url: 'https://viberide-chauffeurs.vercel.app/service-areas',
   }
 };
 

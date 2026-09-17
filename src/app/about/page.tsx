@@ -1,15 +1,15 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Us | VideRide Chauffeurs',
-  description: 'Learn about VideRide Chauffeurs, our philosophy, and our dedication to providing premium private travel experiences in Melbourne.',
+  title: 'About Us | VibeRide Chauffeurs',
+  description: 'Learn about VibeRide Chauffeurs, our philosophy, and our dedication to providing premium private travel experiences in Melbourne.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About Us | VideRide Chauffeurs',
-    description: 'Learn about VideRide Chauffeurs, our philosophy, and our dedication to providing premium private travel experiences in Melbourne.',
-    url: 'https://videride-chauffeurs.vercel.app/about',
+    title: 'About Us | VibeRide Chauffeurs',
+    description: 'Learn about VibeRide Chauffeurs, our philosophy, and our dedication to providing premium private travel experiences in Melbourne.',
+    url: 'https://viberide-chauffeurs.vercel.app/about',
   }
 };
 

@@ -1,4 +1,4 @@
-# VideRide Chauffeurs
+# VibeRide Chauffeurs
 
 Static Next.js website for an Australian premium chauffeur service.
 

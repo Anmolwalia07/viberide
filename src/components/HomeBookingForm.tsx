@@ -216,7 +216,8 @@ export function HomeBookingForm({
         </div>
 
         <a
-          href="tel:0424136433"
+          href={`tel:${site.phone.replace(/\s+/g, '')}`}
+          aria-label={`Call us at ${site.phone}`}
           className="
             shrink-0
             inline-flex
@@ -224,9 +225,10 @@ export function HomeBookingForm({
             gap-1.5
             rounded-full
             bg-[#b9a47a]
-            px-3
+            px-3.5
             py-1.5
             text-xs
+            sm:text-[13px]
             font-medium
             text-white
             transition-colors
@@ -234,7 +236,7 @@ export function HomeBookingForm({
           "
         >
           <Phone size={12} />
-          <span>Instant Call</span>
+          <span>{site.phone}</span>
         </a>
       </div>
 
