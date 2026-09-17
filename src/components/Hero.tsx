@@ -26,15 +26,15 @@ export function Hero() {
 
           {/* LEFT */}
           <div className="max-w-3xl">
-            <div className="eyebrow">
-              Private chauffeur service · Melbourne
-            </div>
+            <h1 className="eyebrow">
+              Premium Chauffeur Service in Melbourne
+            </h1>
 
-            <h1 className="serif mt-6 text-6xl leading-[0.88] md:text-8xl lg:text-9xl">
+            <div className="serif mt-6 text-6xl leading-[0.88] md:text-8xl lg:text-9xl">
               Arrive in
               <br />
               <em>style.</em>
-            </h1>
+            </div>
 
             <p className="mt-8 max-w-xl text-base leading-7 text-neutral-300 md:text-lg">
               Professional chauffeurs, premium vehicles and considered

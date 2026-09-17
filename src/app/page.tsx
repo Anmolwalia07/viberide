@@ -19,13 +19,38 @@ const featureImage =
 
 export default function Home() {
   const { services, fleet, site } = getSiteContent();
-  const schema = {
+  const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: site.name,
     description: site.description,
     url: site.url,
     telephone: site.phone,
+    email: site.email,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Melbourne',
+      addressRegion: 'VIC',
+      addressCountry: 'AU',
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Melbourne',
+    },
+    priceRange: '$$$',
+  };
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(([question, answer]) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+      },
+    })),
   };
 
   return (
@@ -37,7 +62,13 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(schema),
+          __html: JSON.stringify(localBusinessSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
         }}
       />
 
@@ -56,7 +87,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="A higher standard"
             title="Private travel, without the ordinary."
-            body="From the first enquiry to the final arrival, every touchpoint is designed around comfort, discretion and reliability."
+            body="From the first enquiry to the final arrival, every touchpoint is designed around comfort, discretion and reliability. Experience a true private chauffeur service in Melbourne."
           />
 
           <div className="mt-14 grid gap-px bg-white/10 md:grid-cols-3">
@@ -133,7 +164,6 @@ export default function Home() {
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover transition duration-700 hover:scale-105"
-                      unoptimized={Boolean(vehicle.imageUrl)}
                     />
                   </div>
 
@@ -184,7 +214,7 @@ export default function Home() {
 
             <div className="mt-10 grid gap-6">
               {[
-                'Professional presentation',
+                'Professional Melbourne chauffeurs',
                 'Comfort-first private travel',
                 'Airport and corporate readiness',
                 'Clear, considered communication',
@@ -207,7 +237,7 @@ export default function Home() {
           <div className="relative min-h-[480px] overflow-hidden">
             <Image
               src={featureImage}
-              alt="Premium luxury vehicle"
+              alt="Premium Melbourne chauffeur vehicle"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
@@ -293,6 +323,45 @@ export default function Home() {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Premium SEO Content                                                */}
+      {/* ------------------------------------------------------------------ */}
+
+      <section className="section pb-24">
+        <div className="container max-w-4xl text-neutral-400 text-sm leading-7 space-y-8">
+          <div className="space-y-4">
+            <h2 className="serif text-2xl text-white">The standard for chauffeur service in Melbourne</h2>
+            <p>
+              When navigating a bustling global city, time and presentation are invaluable. Veloura Chauffeurs provides an exceptional <strong>chauffeur service in Melbourne</strong>, prioritizing your privacy, safety, and comfort. Whether you require a seamless transition from the runway to the boardroom, or dedicated transport for a high-profile event, our professional Melbourne chauffeurs ensure every detail is meticulously managed. 
+            </p>
+            <p>
+              We operate a modern fleet of premium European vehicles, allowing us to deliver a luxurious, quiet, and consistently reliable private travel experience. Our approach removes the friction from modern transport, providing you with a sanctuary on the road.
+            </p>
+          </div>
+
+          <div className="space-y-4 mt-12">
+            <h3 className="serif text-xl text-white">Melbourne Airport transfers without the wait</h3>
+            <p>
+              Air travel demands precision. Our <strong>Melbourne Airport transfers</strong> are designed to completely eliminate the stress of arrivals and departures at both Tullamarine and Avalon airports. We actively monitor flight paths and terminal schedules to adjust for early arrivals or unexpected delays. Your private chauffeur will be waiting in the designated arrivals hall, ready to assist with your luggage and guide you to your waiting premium luxury vehicle. Avoid the uncertainty of ride-sharing and the delays of public transport with a dedicated airport chauffeur.
+            </p>
+          </div>
+
+          <div className="space-y-4 mt-12">
+            <h3 className="serif text-xl text-white">Dedicated corporate chauffeur services</h3>
+            <p>
+              For the modern executive, travel time is an opportunity for preparation or rest. Our <strong>corporate chauffeur services</strong> are tailored for business professionals who require absolute discretion and punctuality. We frequently facilitate multi-stop roadshows, inter-office transit, and VIP client transportation across the Melbourne CBD and surrounding commercial hubs. With our executive fleet, including the Mercedes S-Class and Audi A8, you can conduct confidential calls and finalize presentations in a secure, whisper-quiet environment.
+            </p>
+          </div>
+
+          <div className="space-y-4 mt-12">
+            <h3 className="serif text-xl text-white">Flexible point-to-point and private chauffeur options</h3>
+            <p>
+              Beyond corporate and airport logistics, we offer highly flexible <strong>private chauffeur Melbourne</strong> services for personal and family travel. Whether you need an hourly chauffeur for a day of shopping in South Yarra, a reliable <strong>point-to-point chauffeur</strong> for a regional winery tour, or elegant transport for a wedding, our service adapts to your itinerary. We service all major suburbs, from Toorak and Brighton to the Mornington Peninsula, ensuring that wherever your destination lies, you arrive in style.
+            </p>
           </div>
         </div>
       </section>

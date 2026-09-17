@@ -4,12 +4,18 @@ export const site = {
   email: '[EMAIL ADDRESS]',
   address: '[BUSINESS ADDRESS]',
   whatsapp: '[WHATSAPP NUMBER]',
-  url: 'https://example.com',
+  url: 'https://veloura-chauffeurs.vercel.app/',
   metaDescription:
-    'Premium chauffeur services across Melbourne and Victoria, including airport transfers, corporate travel, events and private journeys.',
-
+    'Premium chauffeur service in Melbourne. Book professional private chauffeurs for airport transfers, corporate travel, point-to-point, and luxury events.',
   description:
-    'Premium chauffeur services across Melbourne and Victoria, including Melbourne Airport transfers, corporate travel, events and private journeys.',
+    'Premium chauffeur service in Melbourne. Book professional private chauffeurs for airport transfers, corporate travel, point-to-point, and luxury events.',
+  social: {
+    facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || '',
+    instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || '',
+    linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || '',
+    x: process.env.NEXT_PUBLIC_X_URL || '',
+    youtube: process.env.NEXT_PUBLIC_YOUTUBE_URL || '',
+  }
 };
 
 export const services = [
@@ -26,7 +32,7 @@ export const services = [
   [
     'Point-to-Point',
     'A refined private transfer between any two destinations across Melbourne and Victoria.',
-    '/booking',
+    '/services/point-to-point',
   ],
   [
     'Weddings & Events',
@@ -39,9 +45,9 @@ export const services = [
     '/services/hourly-chauffeur',
   ],
   [
-    'Hotel Transfers',
-    'Quiet, comfortable transfers between Melbourne hotels, residences, venues and airports.',
-    '/booking',
+    'Private Chauffeur',
+    'Dedicated, discreet private chauffeur services for individuals and families requiring seamless Melbourne travel.',
+    '/services/private-chauffeur',
   ],
 ];
 
@@ -104,27 +110,27 @@ export const fleet = [
 
 export const faqs = [
   [
-    'Can you accommodate airport delays?',
-    'Flight monitoring and waiting arrangements are business-policy dependent. Confirm the applicable terms with the chauffeur team when booking.',
+    'How do I book a chauffeur in Melbourne?',
+    'You can easily request a quote or book directly through our website by filling out the booking form, or by contacting our team via phone or WhatsApp. We recommend advance bookings for guaranteed availability.',
+  ],
+  [
+    'Do you provide Melbourne Airport transfers?',
+    'Yes, we provide premium meet-and-greet airport transfers to and from Melbourne Airport (Tullamarine) and Avalon Airport, complete with flight monitoring.',
+  ],
+  [
+    'Can I book a chauffeur for corporate travel?',
+    'Absolutely. We specialize in corporate chauffeur services across Melbourne, providing reliable, discreet, and comfortable travel for executives and business teams.',
+  ],
+  [
+    'What vehicles are available in your fleet?',
+    'Our luxury fleet includes premium European vehicles, such as Audi and Mercedes-Benz sedans, spacious SUVs, and luxury vans for group travel.',
+  ],
+  [
+    'Do you provide point-to-point transfers?',
+    'Yes, we offer seamless point-to-point private transfers between any two destinations across Melbourne and regional Victoria.',
   ],
   [
     'How far in advance should I book?',
-    'Advance notice is recommended, especially for Melbourne Airport transfers, corporate schedules and events. Availability is subject to the requested date and vehicle.',
-  ],
-  [
-    'Do you provide child seats?',
-    'Child-seat availability is business-policy dependent. Add the requirement to your request so the team can confirm options.',
-  ],
-  [
-    'How are fares calculated?',
-    'This site intentionally does not publish invented fares. A future pricing engine can calculate base fare, distance, vehicle, airport fees, waiting, tolls and special requirements.',
-  ],
-  [
-    'What areas do you service?',
-    'Veloura Chauffeurs provides private chauffeur services across Melbourne and surrounding areas, subject to availability and the requested journey.',
-  ],
-  [
-    'What is the cancellation policy?',
-    'Cancellation terms are policy-dependent and must be reviewed and approved by the business before publication.',
+    'While we try to accommodate short-notice requests, we recommend booking at least 24 hours in advance to ensure your preferred vehicle is available.',
   ],
 ];

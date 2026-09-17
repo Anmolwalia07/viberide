@@ -1,1 +1,31 @@
-export default function Privacy(){return <main className="pt-28"><div className="container section prose prose-invert max-w-3xl"><div className="eyebrow">Legal · review required</div><h1 className="serif mt-5 text-6xl">Privacy Policy</h1><p className="mt-8 text-neutral-400">This is a production-ready content placeholder, not legal advice. It must be reviewed and replaced with the business’s actual privacy policy, data controller details, retention practices, lawful bases and Australian privacy obligations before launch.</p><h2 className="serif mt-12 text-3xl">Information collected</h2><p className="mt-3 text-neutral-400">Booking and contact forms may collect identity, contact, journey and special-request information necessary to respond to an enquiry.</p><h2 className="serif mt-10 text-3xl">Use and disclosure</h2><p className="mt-3 text-neutral-400">Data should only be used and disclosed according to the final approved policy and configured service providers.</p></div></main>}
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | Veloura Chauffeurs',
+  description: 'Read the privacy policy and data collection practices for Veloura Chauffeurs.',
+  alternates: {
+    canonical: '/privacy',
+  },
+};
+
+export default function Privacy() {
+  return (
+    <main className="pt-28">
+      <div className="container section prose prose-invert max-w-3xl">
+        <div className="eyebrow">Legal · review required</div>
+        <h1 className="serif mt-5 text-6xl">Privacy Policy</h1>
+        <p className="mt-8 text-neutral-400">
+          This is a production-ready content placeholder, not legal advice. It must be reviewed and replaced with the business’s actual privacy policy, data controller details, retention practices, lawful bases and Australian privacy obligations before launch.
+        </p>
+        <h2 className="serif mt-12 text-3xl">Information collected</h2>
+        <p className="mt-3 text-neutral-400">
+          Booking and contact forms may collect identity, contact, journey and special-request information necessary to respond to an enquiry.
+        </p>
+        <h2 className="serif mt-10 text-3xl">Use and disclosure</h2>
+        <p className="mt-3 text-neutral-400">
+          Data should only be used and disclosed according to the final approved policy and configured service providers.
+        </p>
+      </div>
+    </main>
+  );
+}

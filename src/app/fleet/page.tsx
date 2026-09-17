@@ -1,5 +1,19 @@
 import Image from 'next/image';
 import { getSiteContent } from '@/lib/content';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Luxury Fleet | Veloura Chauffeurs Melbourne',
+  description: 'Explore our fleet of premium European vehicles including Mercedes-Benz and Audi, available for private chauffeur hire across Melbourne.',
+  alternates: {
+    canonical: '/fleet',
+  },
+  openGraph: {
+    title: 'Luxury Fleet | Veloura Chauffeurs Melbourne',
+    description: 'Explore our fleet of premium European vehicles including Mercedes-Benz and Audi, available for private chauffeur hire across Melbourne.',
+    url: 'https://veloura-chauffeurs.vercel.app/fleet',
+  }
+};
 
 const fleetImages = [
   'https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1000&q=80',
@@ -34,7 +48,6 @@ export default function Fleet() {
                   alt={vehicle.title}
                   fill
                   className="object-cover"
-                  unoptimized={Boolean(vehicle.imageUrl)}
                 />
               </div>
 
