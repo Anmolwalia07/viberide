@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions | Veloura Chauffeurs',
-  description: 'Terms and conditions for booking and traveling with Veloura Chauffeurs.',
+  title: 'Terms & Conditions | VideRide Chauffeurs',
+  description: 'Terms and conditions for booking and traveling with VideRide Chauffeurs.',
   alternates: {
     canonical: '/terms',
   },

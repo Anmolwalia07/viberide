@@ -3,15 +3,15 @@ import { getSiteContent } from '@/lib/content';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Luxury Fleet | Veloura Chauffeurs Melbourne',
+  title: 'Luxury Fleet | VideRide Chauffeurs Melbourne',
   description: 'Explore our fleet of premium European vehicles including Mercedes-Benz and Audi, available for private chauffeur hire across Melbourne.',
   alternates: {
     canonical: '/fleet',
   },
   openGraph: {
-    title: 'Luxury Fleet | Veloura Chauffeurs Melbourne',
+    title: 'Luxury Fleet | VideRide Chauffeurs Melbourne',
     description: 'Explore our fleet of premium European vehicles including Mercedes-Benz and Audi, available for private chauffeur hire across Melbourne.',
-    url: 'https://veloura-chauffeurs.vercel.app/fleet',
+    url: 'https://videride-chauffeurs.vercel.app/fleet',
   }
 };
 

@@ -1,10 +1,10 @@
 export const site = {
-  name: 'Veloura Chauffeurs',
+  name: 'VideRide Chauffeurs',
   phone: '[PHONE NUMBER]',
   email: '[EMAIL ADDRESS]',
   address: '[BUSINESS ADDRESS]',
   whatsapp: '[WHATSAPP NUMBER]',
-  url: 'https://veloura-chauffeurs.vercel.app/',
+  url: 'https://videride-chauffeurs.vercel.app/',
   metaDescription:
     'Premium chauffeur service in Melbourne. Book professional private chauffeurs for airport transfers, corporate travel, point-to-point, and luxury events.',
   description:

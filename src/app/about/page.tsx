@@ -1,15 +1,15 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Us | Veloura Chauffeurs',
-  description: 'Learn about Veloura Chauffeurs, our philosophy, and our dedication to providing premium private travel experiences in Melbourne.',
+  title: 'About Us | VideRide Chauffeurs',
+  description: 'Learn about VideRide Chauffeurs, our philosophy, and our dedication to providing premium private travel experiences in Melbourne.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About Us | Veloura Chauffeurs',
-    description: 'Learn about Veloura Chauffeurs, our philosophy, and our dedication to providing premium private travel experiences in Melbourne.',
-    url: 'https://veloura-chauffeurs.vercel.app/about',
+    title: 'About Us | VideRide Chauffeurs',
+    description: 'Learn about VideRide Chauffeurs, our philosophy, and our dedication to providing premium private travel experiences in Melbourne.',
+    url: 'https://videride-chauffeurs.vercel.app/about',
   }
 };
 
