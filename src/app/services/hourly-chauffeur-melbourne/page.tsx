@@ -5,7 +5,7 @@ export const metadata = buildMetadata({
   title: 'Hourly Chauffeur Melbourne',
   description:
     'Hourly chauffeur service in Melbourne for meetings, events, shopping, multi-stop travel and flexible private transport across Melbourne and Victoria.',
-  path: '/hourly-chauffeur-melbourne',
+  path: '/services/hourly-chauffeur-melbourne',
 });
 
 const faqs = [

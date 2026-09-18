@@ -5,7 +5,7 @@ export const metadata = buildMetadata({
   title: 'Point-to-Point Chauffeur Melbourne',
   description:
     'Private point-to-point chauffeur service in Melbourne for direct travel between destinations, airports, meetings and events with a premium, stress-free experience.',
-  path: '/point-to-point-chauffeur',
+  path: '/services/point-to-point-chauffeur',
 });
 
 const faqs = [

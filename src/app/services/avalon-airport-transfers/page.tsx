@@ -5,7 +5,7 @@ export const metadata = buildMetadata({
   title: 'Avalon Airport Transfers',
   description:
     'Private Avalon Airport transfers for business travel, family trips and premium door-to-door chauffeur journeys across Melbourne and Victoria.',
-  path: '/avalon-airport-transfers',
+  path: '/services/avalon-airport-transfers',
 });
 
 const faqs = [

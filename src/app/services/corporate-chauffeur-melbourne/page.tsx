@@ -5,7 +5,7 @@ export const metadata = buildMetadata({
   title: 'Corporate Chauffeur Melbourne',
   description:
     'Corporate chauffeur service in Melbourne for executive travel, meetings, airport transfers and discreet business journeys across the city and Victoria.',
-  path: '/corporate-chauffeur-melbourne',
+  path: '/services/corporate-chauffeur-melbourne',
 });
 
 const faqs = [

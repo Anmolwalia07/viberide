@@ -7,14 +7,14 @@ export const dynamic = 'force-static';
 const routes = [
   '/',
   '/services',
-  '/melbourne-airport-transfers',
-  '/avalon-airport-transfers',
-  '/corporate-chauffeur-melbourne',
-  '/private-chauffeur-melbourne',
-  '/point-to-point-chauffeur',
-  '/hourly-chauffeur-melbourne',
-  '/wedding-chauffeur-melbourne',
-  '/luxury-car-with-driver-melbourne',
+  '/services/melbourne-airport-transfers',
+  '/services/avalon-airport-transfers',
+  '/services/corporate-chauffeur-melbourne',
+  '/services/private-chauffeur-melbourne',
+  '/services/point-to-point-chauffeur',
+  '/services/hourly-chauffeur-melbourne',
+  '/services/wedding-chauffeur-melbourne',
+  '/services/luxury-car-with-driver-melbourne',
   '/service-areas',
   '/service-areas/melbourne-cbd',
   '/service-areas/southbank',
@@ -51,4 +51,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '/' ? 1 : 0.7,
   }));
 }
-

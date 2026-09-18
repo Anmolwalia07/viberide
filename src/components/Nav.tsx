@@ -5,26 +5,11 @@ import { useState } from 'react';
 import { ChevronDown, Menu, Phone, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { site as defaultSite } from '@/config/site';
-
-const links = [
-  { href: '/', label: 'Home' },
-  { href: '/fleet', label: 'Fleet' },
-  { href: '/service-areas', label: 'Service Areas' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/about', label: 'About' },
-];
-
-const serviceLinks = [
-  { href: '/services', label: 'All Services' },
-  { href: '/melbourne-airport-transfers', label: 'Melbourne Airport Transfers' },
-  { href: '/avalon-airport-transfers', label: 'Avalon Airport Transfers' },
-  { href: '/corporate-chauffeur-melbourne', label: 'Corporate Chauffeur' },
-  { href: '/private-chauffeur-melbourne', label: 'Private Chauffeur' },
-  { href: '/point-to-point-chauffeur', label: 'Point-to-Point Chauffeur' },
-  { href: '/hourly-chauffeur-melbourne', label: 'Hourly Chauffeur' },
-  { href: '/wedding-chauffeur-melbourne', label: 'Weddings & Events' },
-  { href: '/luxury-car-with-driver-melbourne', label: 'Luxury Car With Driver' },
-];
+import {
+  areaNavigation,
+  primaryNavigation,
+  serviceNavigation,
+} from '@/config/navigation';
 
 export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
   const [open, setOpen] = useState(false);
@@ -58,7 +43,7 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
             </Link>
             <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 translate-y-2 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
               <div className="border border-white/10 bg-[#0b0c0d] p-2 shadow-2xl">
-                {serviceLinks.map((link) => (
+                {serviceNavigation.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
@@ -70,7 +55,29 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
               </div>
             </div>
           </div>
-          {links.map((link) => (
+          <div className="group relative">
+            <Link
+              href="/service-areas"
+              className="flex items-center gap-1 transition-colors hover:text-white"
+            >
+              <span>Service Areas</span>
+              <ChevronDown size={13} aria-hidden="true" />
+            </Link>
+            <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 translate-y-2 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+              <div className="border border-white/10 bg-[#0b0c0d] p-2 shadow-2xl">
+                {areaNavigation.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="block px-4 py-3 text-[10px] tracking-[.12em] text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+          {primaryNavigation.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -163,7 +170,7 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
               Services
             </Link>
             <div className="mb-2 ml-4 grid gap-1 border-l border-white/10 pl-4">
-              {serviceLinks.slice(1).map((link) => (
+              {serviceNavigation.slice(1).map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -174,7 +181,26 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
                 </Link>
               ))}
             </div>
-            {links.map((link) => (
+            <Link
+              href="/service-areas"
+              onClick={closeMenu}
+              className="block py-3 text-sm uppercase tracking-[.15em] text-neutral-200 transition-colors hover:text-white"
+            >
+              Service Areas
+            </Link>
+            <div className="mb-2 ml-4 grid gap-1 border-l border-white/10 pl-4">
+              {areaNavigation.slice(1).map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className="block py-2 text-xs uppercase tracking-[.12em] text-neutral-400 transition-colors hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+            {primaryNavigation.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}

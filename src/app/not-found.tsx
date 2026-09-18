@@ -20,7 +20,7 @@ export default function NotFoundPage() {
         <div className="mt-10 flex flex-wrap gap-4">
           <Link href="/" className="btn">Home</Link>
           <Link href="/services" className="btn secondary">Services</Link>
-          <Link href="/melbourne-airport-transfers" className="btn secondary">Airport Transfers</Link>
+          <Link href="/services/melbourne-airport-transfers" className="btn secondary">Airport Transfers</Link>
           <Link href="/service-areas" className="btn secondary">Service Areas</Link>
         </div>
       </div>

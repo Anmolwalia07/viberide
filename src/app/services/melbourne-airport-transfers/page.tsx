@@ -5,7 +5,7 @@ export const metadata = buildMetadata({
   title: 'Melbourne Airport Transfers',
   description:
     'Private Melbourne Airport transfers for Tullamarine and Avalon arrivals, corporate travel, CBD routes and family transport with professional chauffeurs.',
-  path: '/melbourne-airport-transfers',
+  path: '/services/melbourne-airport-transfers',
 });
 
 const faqs = [

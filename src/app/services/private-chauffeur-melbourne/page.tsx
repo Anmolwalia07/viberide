@@ -5,7 +5,7 @@ export const metadata = buildMetadata({
   title: 'Private Chauffeur Melbourne',
   description:
     'Private chauffeur service in Melbourne for city travel, airport journeys, events, leisure and tailored private appointments across Melbourne and Victoria.',
-  path: '/private-chauffeur-melbourne',
+  path: '/services/private-chauffeur-melbourne',
 });
 
 const faqs = [

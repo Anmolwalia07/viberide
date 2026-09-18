@@ -23,8 +23,8 @@ export function Footer({ site = defaultSite }: { site?: typeof defaultSite }) {
           <div className="eyebrow">Explore</div>
           <div className="mt-5 grid gap-3 text-sm text-neutral-300">
             <Link href="/services">Services</Link>
-            <Link href="/melbourne-airport-transfers">Melbourne Airport</Link>
-            <Link href="/corporate-chauffeur-melbourne">Corporate</Link>
+            <Link href="/services/melbourne-airport-transfers">Melbourne Airport</Link>
+            <Link href="/services/corporate-chauffeur-melbourne">Corporate</Link>
             <Link href="/fleet">Fleet</Link>
           </div>
         </div>
@@ -47,4 +47,3 @@ export function Footer({ site = defaultSite }: { site?: typeof defaultSite }) {
     </footer>
   );
 }
-

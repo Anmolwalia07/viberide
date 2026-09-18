@@ -5,7 +5,7 @@ export const metadata = buildMetadata({
   title: 'Wedding Chauffeur Melbourne',
   description:
     'Wedding and event chauffeur service in Melbourne for premium arrivals, guest transport and seamless travel around important occasions.',
-  path: '/wedding-chauffeur-melbourne',
+  path: '/services/wedding-chauffeur-melbourne',
 });
 
 const faqs = [

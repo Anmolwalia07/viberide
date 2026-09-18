@@ -5,7 +5,7 @@ export const metadata = buildMetadata({
   title: 'Luxury Car With Driver Melbourne',
   description:
     'Luxury car with driver in Melbourne for premium private travel, special occasions and discerning city journeys with a high-end chauffeur experience.',
-  path: '/luxury-car-with-driver-melbourne',
+  path: '/services/luxury-car-with-driver-melbourne',
 });
 
 const faqs = [
