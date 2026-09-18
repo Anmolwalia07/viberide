@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | VibeRide Chauffeurs',
-  description: 'Read the privacy policy and data collection practices for VibeRide Chauffeurs.',
+  title: 'Privacy Policy | Veloura Chauffeurs',
+  description: 'Read the privacy policy and data collection practices for Veloura Chauffeurs.',
   alternates: {
     canonical: '/privacy',
   },

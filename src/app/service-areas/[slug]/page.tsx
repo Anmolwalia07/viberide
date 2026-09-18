@@ -29,6 +29,31 @@ const areas = {
       { label: 'Private chauffeur', href: '/services/private-chauffeur-melbourne' },
     ],
   },
+  'moonee-ponds': {
+    title: 'Moonee Ponds Chauffeur Service',
+    description:
+      'Private chauffeur service from Melbourne to Moonee Ponds for airport transfers, business appointments and smooth city-to-suburb journeys.',
+    highlights: [
+      'Reliable chauffeur transport for Melbourne to Moonee Ponds trips and local appointments.',
+      'Comfortable airport transfer service between Moonee Ponds, the CBD and Melbourne Airport.',
+      'A premium, discreet option for private travel, business commuting and family transport.',
+    ],
+    faqs: [
+      {
+        question: 'Can I book a chauffeur from Melbourne to Moonee Ponds?',
+        answer: 'Yes. We provide chauffeur travel between Melbourne CBD, Moonee Ponds and the airport with a smooth, private service.',
+      },
+      {
+        question: 'Is this good for airport and business travel?',
+        answer: 'Yes. It is a popular option for airport transfers, business appointments and elegant local transport.',
+      },
+    ],
+    relatedLinks: [
+      { label: 'Melbourne Airport Transfers', href: '/services/melbourne-airport-transfers' },
+      { label: 'Private chauffeur', href: '/services/private-chauffeur-melbourne' },
+      { label: 'Service areas', href: '/service-areas' },
+    ],
+  },
   southbank: {
     title: 'Southbank Chauffeur Service',
     description:
@@ -247,6 +272,23 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: page.title,
     description: page.description,
     path: `/service-areas/${slug}`,
+    keywords:
+      slug === 'moonee-ponds'
+        ? [
+            'melbourne to moonee ponds',
+            'chauffeur service melbourne',
+            'airport transfer from melbourne airport to city',
+            'melbourne airport to city transfer',
+            'transfer melbourne airport to city',
+            'private chauffeur Melbourne',
+          ]
+        : [
+            'chauffeur service melbourne',
+            'chauffeur cars melbourne',
+            'private chauffeur Melbourne',
+            'Melbourne airport transfer',
+            'airport transfer from melbourne airport to city',
+          ],
   });
 }
 

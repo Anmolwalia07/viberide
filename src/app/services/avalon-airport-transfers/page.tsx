@@ -12,7 +12,7 @@ const faqs = [
   {
     question: 'Do you provide transport to Avalon Airport?',
     answer:
-      'Yes. VibeRide offers private chauffeur travel to and from Avalon Airport for both business and personal trips across Melbourne and regional Victoria.',
+      'Yes. Veloura offers private chauffeur travel to and from Avalon Airport for both business and personal trips across Melbourne and regional Victoria.',
   },
   {
     question: 'Is Avalon Airport transfer suitable for corporate travel?',

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: 'Premium Chauffeur Service Melbourne',
     description: getSiteContent().site.metaDescription,
     path: '/',
+    keywords: getSiteContent().site.keywords,
   }),
   metadataBase: new URL(getSiteContent().site.url),
   robots: {

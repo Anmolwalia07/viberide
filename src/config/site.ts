@@ -1,12 +1,25 @@
 export const site = {
-  name: 'VibeRide Chauffeurs',
+  name: 'Veloura Chauffeurs',
   phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+61 424 136 433',
   email: process.env.NEXT_PUBLIC_BUSINESS_EMAIL || '[EMAIL ADDRESS]',
   address: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS || '[BUSINESS ADDRESS]',
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+61 424 136 433',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://viberidechauffeurs.com.au',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://velourachauffeurs.com.au',
   metaDescription:
     'Book a premium chauffeur service in Melbourne for airport transfers, corporate travel, private journeys, weddings and events. Professional chauffeurs and luxury vehicles.',
+  keywords: [
+    'chauffeur service melbourne',
+    'chauffeur cars melbourne',
+    'private chauffeur Melbourne',
+    'Melbourne airport transfer',
+    'airport transfer from melbourne airport to city',
+    'melbourne airport to city transfer',
+    'transfer melbourne airport to city',
+    'private car service for long distance travel cost in australia',
+    'melbourne to moonee ponds',
+    'perth airport transfer service',
+    'servicio de auto privado en el aeropuerto mel',
+  ],
   description:
     'Premium chauffeur service in Melbourne. Book professional private chauffeurs for airport transfers, corporate travel, point-to-point, and luxury events.',
   social: {

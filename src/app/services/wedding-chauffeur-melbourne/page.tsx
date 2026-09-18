@@ -12,7 +12,7 @@ const faqs = [
   {
     question: 'Can I book chauffeur transport for a wedding?',
     answer:
-      'Yes. VibeRide can support wedding travel, guest transportation and premium arrival and departure experiences for important occasions.',
+      'Yes. Veloura can support wedding travel, guest transportation and premium arrival and departure experiences for important occasions.',
   },
   {
     question: 'Is this service suitable for private events and celebrations?',

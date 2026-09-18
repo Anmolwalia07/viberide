@@ -27,7 +27,7 @@ const faqs = [
   {
     question: 'How do I arrange a luxury car with driver?',
     answer:
-      'Get in touch with VibeRide to discuss your travel dates, destinations and preferred vehicle type so we can recommend the most suitable option.',
+      'Get in touch with Veloura to discuss your travel dates, destinations and preferred vehicle type so we can recommend the most suitable option.',
   },
 ];
 

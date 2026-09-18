@@ -27,7 +27,7 @@ const faqs = [
   {
     question: 'Do you cover Melbourne suburbs and nearby areas?',
     answer:
-      'Yes. VibeRide supports private travel across Melbourne and select Victoria destinations, including airport routes and key city and suburban locations.',
+      'Yes. Veloura supports private travel across Melbourne and select Victoria destinations, including airport routes and key city and suburban locations.',
   },
 ];
 

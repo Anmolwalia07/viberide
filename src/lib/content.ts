@@ -137,6 +137,14 @@ export function getSiteContent() {
       },
 
       {
+        id: "moonee-ponds",
+        name: "Moonee Ponds",
+        slug: "moonee-ponds",
+        description:
+          "Premium chauffeur service from Melbourne to Moonee Ponds for airport runs, corporate meetings and private transfers.",
+      },
+
+      {
         id: "burwood",
         name: "Burwood",
         slug: "burwood",

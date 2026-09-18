@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
-  title: 'About VibeRide Chauffeurs',
+  title: 'About Veloura Chauffeurs',
   description:
-    'Discover VibeRide Chauffeurs — premium private chauffeur services designed around comfort, reliability and a refined travel experience in Melbourne.',
+    'Discover Veloura Chauffeurs — premium private chauffeur services designed around comfort, reliability and a refined travel experience in Melbourne.',
   path: '/about',
 });
 
@@ -16,7 +16,7 @@ export default function About() {
 
         {/* Eyebrow */}
         <div className="eyebrow">
-          About VibeRide
+          About Veloura
         </div>
 
         {/* Main Heading */}
@@ -31,7 +31,7 @@ export default function About() {
 
           <div>
             <p className="max-w-xl text-xl leading-8 text-neutral-300">
-              VibeRide Chauffeurs is built around a simple idea:
+              Veloura Chauffeurs is built around a simple idea:
               premium travel should feel effortless from the moment
               your journey begins to the moment you arrive.
             </p>
@@ -88,7 +88,7 @@ export default function About() {
 
               <p className="mt-4 text-sm leading-7 text-neutral-400">
                 From airport transfers to longer private journeys,
-                VibeRide is designed around a calm, comfortable and
+                Veloura is designed around a calm, comfortable and
                 refined travel experience.
               </p>
             </div>
@@ -140,7 +140,7 @@ export default function About() {
             <p className="mt-5">
               Whether you are travelling to or from Melbourne
               Airport, attending an important event, meeting
-              clients or arranging private transportation, VibeRide
+              clients or arranging private transportation, Veloura
               focuses on making the journey feel smooth and
               considered.
             </p>
@@ -153,7 +153,7 @@ export default function About() {
 
           <div className="max-w-3xl">
             <div className="eyebrow text-neutral-500">
-              VibeRide Chauffeurs
+              Veloura Chauffeurs
             </div>
 
             <h2 className="serif mt-4 text-4xl leading-tight md:text-6xl">

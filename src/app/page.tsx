@@ -336,7 +336,7 @@ export default function Home() {
           <div className="space-y-4">
             <h2 className="serif text-2xl text-white">The standard for chauffeur service in Melbourne</h2>
             <p>
-              When navigating a bustling global city, time and presentation are invaluable. VibeRide Chauffeurs provides an exceptional <strong>chauffeur service in Melbourne</strong>, prioritizing your privacy, safety, and comfort. Whether you require a seamless transition from the runway to the boardroom, or dedicated transport for a high-profile event, our professional Melbourne chauffeurs ensure every detail is meticulously managed.
+              When navigating a bustling global city, time and presentation are invaluable. Veloura Chauffeurs provides an exceptional <strong>chauffeur service in Melbourne</strong>, prioritizing your privacy, safety, and comfort. Whether you require a seamless transition from the runway to the boardroom, or dedicated transport for a high-profile event, our professional Melbourne chauffeurs ensure every detail is meticulously managed.
             </p>
             <p>
               We operate a modern fleet of premium European vehicles, allowing us to deliver a luxurious, quiet, and consistently reliable private travel experience. Our approach removes the friction from modern transport, providing you with a sanctuary on the road.

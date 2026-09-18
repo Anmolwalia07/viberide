@@ -4,7 +4,7 @@ import { getSiteContent } from '@/lib/content';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
-  title: 'Luxury Fleet | VibeRide Chauffeurs Melbourne',
+  title: 'Luxury Fleet | Veloura Chauffeurs Melbourne',
   description: 'Explore our fleet of premium European vehicles including Mercedes-Benz and Audi, available for private chauffeur hire across Melbourne.',
   path: '/fleet',
 });

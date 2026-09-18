@@ -5,8 +5,19 @@ import { buildMetadata } from '@/lib/seo';
 export const metadata = buildMetadata({
   title: 'Chauffeur Service Areas Melbourne & Victoria',
   description:
-    'Discover VibeRide service areas across Melbourne and Victoria, including the CBD, Southbank, Docklands, Richmond, South Yarra, Toorak, Brighton and Mornington Peninsula.',
+    'Discover Veloura service areas across Melbourne and Victoria, including the CBD, Southbank, Docklands, Richmond, South Yarra, Toorak, Brighton and Mornington Peninsula.',
   path: '/service-areas',
+  keywords: [
+    'chauffeur service melbourne',
+    'chauffeur cars melbourne',
+    'melbourne to moonee ponds',
+    'airport transfer from melbourne airport to city',
+    'melbourne airport to city transfer',
+    'transfer melbourne airport to city',
+    'private car service for long distance travel cost in australia',
+    'perth airport transfer service',
+    'servicio de auto privado en el aeropuerto mel',
+  ],
 });
 
 const areas = [
@@ -28,7 +39,7 @@ export default function ServiceAreasPage() {
         <div className="eyebrow">Service areas</div>
         <h1 className="serif mt-5 text-5xl md:text-7xl">Chauffeur Services Across Melbourne & Victoria</h1>
         <p className="mt-8 max-w-3xl text-lg leading-8 text-neutral-300">
-          VibeRide provides premium chauffeur services across key Melbourne locations and surrounding Victoria routes, including airport transfers, corporate programmes and private travel arrangements.
+          Veloura provides premium chauffeur services across key Melbourne locations and surrounding Victoria routes, including Melbourne to Moonee Ponds airport transfers, airport transfer from Melbourne Airport to the city, and private travel arrangements for corporate clients and families.
         </p>
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">

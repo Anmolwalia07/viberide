@@ -68,7 +68,7 @@ export function ServiceLandingPage({
           <div className="space-y-6">
             <h2 className="serif text-3xl md:text-4xl text-white">Why clients choose this service</h2>
             <p className="text-neutral-300 leading-7">
-              VibeRide keeps each journey carefully planned around your schedule, route, and the level of privacy your trip requires. Whether you are travelling to the airport, moving between meetings, or making a special occasion feel seamless, our approach is built around punctuality, comfort and clear communication.
+              Veloura keeps each journey carefully planned around your schedule, route, and the level of privacy your trip requires. Whether you are travelling to the airport, moving between meetings, or making a special occasion feel seamless, our approach is built around punctuality, comfort and clear communication.
             </p>
             <p className="text-neutral-300 leading-7">
               We work with premium vehicles and considerate chauffeurs across Melbourne and Victoria, helping you move confidently between CBD destinations, regional travel, events and private appointments without the stress of traffic, parking or timing uncertainty.
