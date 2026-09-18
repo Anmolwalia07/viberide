@@ -1,21 +1,13 @@
-import type { Metadata } from 'next';
+import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: 'About Us | VibeRide Chauffeurs',
+import { buildMetadata } from '@/lib/seo';
+
+export const metadata = buildMetadata({
+  title: 'About VibeRide Chauffeurs',
   description:
     'Discover VibeRide Chauffeurs — premium private chauffeur services designed around comfort, reliability and a refined travel experience in Melbourne.',
-  alternates: {
-    canonical: '/about',
-  },
-  openGraph: {
-    title: 'About Us | VibeRide Chauffeurs',
-    description:
-      'Discover VibeRide Chauffeurs — premium private chauffeur services designed around comfort, reliability and a refined travel experience in Melbourne.',
-    url: 'https://viberidechauffeurs.vercel.app/about',
-    siteName: 'VibeRide Chauffeurs',
-    type: 'website',
-  },
-};
+  path: '/about',
+});
 
 export default function About() {
   return (
@@ -175,7 +167,7 @@ export default function About() {
               the road ahead.
             </p>
 
-            <a
+            <Link
               href="/#quote-form"
               className="
                 mt-8
@@ -194,7 +186,7 @@ export default function About() {
               "
             >
               Get a Quote
-            </a>
+            </Link>
           </div>
 
         </section>

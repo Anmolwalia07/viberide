@@ -10,15 +10,6 @@ import {
 import { track } from '@/lib/analytics';
 import { site } from '@/config/site';
 
-const tripTypes = [
-  'Airport Transfer',
-  'Point-to-Point',
-  'Corporate',
-  'Event',
-  'Hourly Chauffeur',
-  'Other',
-];
-
 const fleetOptions = [
   'Luxury Sedan',
   'Executive Sedan',

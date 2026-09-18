@@ -6,24 +6,20 @@ import { getSiteContent } from '@/lib/content';
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 
-export const metadata: Metadata = (() => {
-  const { site } = getSiteContent();
-  return {
-    title: {
-      default: `Chauffeur Service Melbourne | ${site.name}`,
-      template: `%s | ${site.name}`,
-    },
-    description: site.description,
-    metadataBase: new URL(site.url),
-    alternates: { canonical: '/' },
-    openGraph: {
-      title: `Chauffeur Service Melbourne | ${site.name}`,
-      description: site.description,
-      type: 'website',
-      url: site.url,
-    },
-  };
-})();
+import { buildMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = {
+  ...buildMetadata({
+    title: 'Premium Chauffeur Service Melbourne',
+    description: getSiteContent().site.metaDescription,
+    path: '/',
+  }),
+  metadataBase: new URL(getSiteContent().site.url),
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export const viewport: Viewport = {
   width: 'device-width',

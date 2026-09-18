@@ -1,1 +1,54 @@
-import type {MetadataRoute} from 'next';import {site} from '@/config/site';export const dynamic='force-static';export default function sitemap():MetadataRoute.Sitemap{return ['','services','services/airport-transfers','services/corporate-chauffeur','services/weddings-events','services/hourly-chauffeur','services/point-to-point','services/private-chauffeur','fleet','about','service-areas','privacy','terms'].map(path=>({url:`${site.url}/${path}`,lastModified:new Date()}))}
+import type { MetadataRoute } from 'next';
+
+import { site } from '@/config/site';
+
+export const dynamic = 'force-static';
+
+const routes = [
+  '/',
+  '/services',
+  '/melbourne-airport-transfers',
+  '/avalon-airport-transfers',
+  '/corporate-chauffeur-melbourne',
+  '/private-chauffeur-melbourne',
+  '/point-to-point-chauffeur',
+  '/hourly-chauffeur-melbourne',
+  '/wedding-chauffeur-melbourne',
+  '/luxury-car-with-driver-melbourne',
+  '/service-areas',
+  '/service-areas/melbourne-cbd',
+  '/service-areas/southbank',
+  '/service-areas/docklands',
+  '/service-areas/richmond',
+  '/service-areas/st-kilda',
+  '/service-areas/south-yarra',
+  '/service-areas/toorak',
+  '/service-areas/brighton',
+  '/service-areas/mornington-peninsula',
+  '/fleet',
+  '/about',
+  '/privacy',
+  '/terms',
+  '/blog',
+  '/blog/melbourne-airport-transfer-guide',
+  '/blog/melbourne-airport-to-cbd-transfer',
+  '/blog/avalon-airport-to-melbourne-transfer',
+  '/services/airport-transfers',
+  '/services/corporate-chauffeur',
+  '/services/hourly-chauffeur',
+  '/services/point-to-point',
+  '/services/private-chauffeur',
+  '/services/weddings-events',
+];
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = site.url.replace(/\/$/, '');
+
+  return routes.map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: route === '/' ? 1 : 0.7,
+  }));
+}
+

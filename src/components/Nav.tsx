@@ -9,9 +9,13 @@ import { site as defaultSite } from '@/config/site';
 const links = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
+  { href: '/melbourne-airport-transfers', label: 'Airport Transfers' },
+  { href: '/corporate-chauffeur-melbourne', label: 'Corporate' },
+  { href: '/private-chauffeur-melbourne', label: 'Private Chauffeur' },
   { href: '/fleet', label: 'Fleet' },
-  { href: '/about', label: 'About' },
   { href: '/service-areas', label: 'Service Areas' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'About' },
 ];
 
 export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {

@@ -1,12 +1,12 @@
 export const site = {
   name: 'VibeRide Chauffeurs',
-  phone: '+61 424 136 433',
-  email: '[EMAIL ADDRESS]',
-  address: '[BUSINESS ADDRESS]',
-  whatsapp: '+61 424 136 433',
-  url: 'https://viberidechauffeurs.vercel.app/',
+  phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+61 424 136 433',
+  email: process.env.NEXT_PUBLIC_BUSINESS_EMAIL || '[EMAIL ADDRESS]',
+  address: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS || '[BUSINESS ADDRESS]',
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+61 424 136 433',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://viberidechauffeurs.com.au',
   metaDescription:
-    'Premium chauffeur service in Melbourne. Book professional private chauffeurs for airport transfers, corporate travel, point-to-point, and luxury events.',
+    'Book a premium chauffeur service in Melbourne for airport transfers, corporate travel, private journeys, weddings and events. Professional chauffeurs and luxury vehicles.',
   description:
     'Premium chauffeur service in Melbourne. Book professional private chauffeurs for airport transfers, corporate travel, point-to-point, and luxury events.',
   social: {
@@ -15,7 +15,7 @@ export const site = {
     linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || '',
     x: process.env.NEXT_PUBLIC_X_URL || '',
     youtube: process.env.NEXT_PUBLIC_YOUTUBE_URL || '',
-  }
+  },
 };
 
 export const services = [

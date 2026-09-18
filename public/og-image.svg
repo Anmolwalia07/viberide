@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">VibeRide Chauffeurs</title>
+  <desc id="desc">Premium chauffeur service in Melbourne</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0b0c0d"/>
+      <stop offset="100%" stop-color="#1a1b1d"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#d2bd8e"/>
+      <stop offset="100%" stop-color="#b9a47a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="60" y="60" width="1080" height="510" rx="28" fill="none" stroke="rgba(255,255,255,0.1)"/>
+  <text x="90" y="210" fill="#d2bd8e" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="6">VIBERIDE CHAUFFEURS</text>
+  <text x="90" y="310" fill="#ffffff" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="700">Premium Chauffeur</text>
+  <text x="90" y="390" fill="#ffffff" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="700">Service Melbourne</text>
+  <rect x="90" y="435" width="280" height="6" fill="url(#gold)"/>
+  <text x="90" y="500" fill="#d8d2c8" font-family="Arial, Helvetica, sans-serif" font-size="28">Airport transfers • Corporate travel • Private journeys</text>
+</svg>
