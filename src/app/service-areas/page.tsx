@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Service Areas | VibeRide Chauffeurs Melbourne',
     description: 'View our verified operating areas across Melbourne and Victoria for private chauffeur journeys, airport transfers and corporate travel.',
-    url: 'https://viberide-chauffeurs.vercel.app/service-areas',
+    url: 'https://viberidechauffeurs.vercel.app/service-areas',
   }
 };
 

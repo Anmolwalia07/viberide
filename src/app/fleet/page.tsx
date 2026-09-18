@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Luxury Fleet | VibeRide Chauffeurs Melbourne',
     description: 'Explore our fleet of premium European vehicles including Mercedes-Benz and Audi, available for private chauffeur hire across Melbourne.',
-    url: 'https://viberide-chauffeurs.vercel.app/fleet',
+    url: 'https://viberidechauffeurs.vercel.app/fleet',
   }
 };
 

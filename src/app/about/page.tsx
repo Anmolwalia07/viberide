@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: 'About Us | VibeRide Chauffeurs',
     description:
       'Discover VibeRide Chauffeurs — premium private chauffeur services designed around comfort, reliability and a refined travel experience in Melbourne.',
-    url: 'https://viberide-chauffeurs.vercel.app/about',
+    url: 'https://viberidechauffeurs.vercel.app/about',
     siteName: 'VibeRide Chauffeurs',
     type: 'website',
   },

@@ -4,7 +4,7 @@ export const site = {
   email: '[EMAIL ADDRESS]',
   address: '[BUSINESS ADDRESS]',
   whatsapp: '+61 424 136 433',
-  url: 'https://viberide-chauffeurs.vercel.app/',
+  url: 'https://viberidechauffeurs.vercel.app/',
   metaDescription:
     'Premium chauffeur service in Melbourne. Book professional private chauffeurs for airport transfers, corporate travel, point-to-point, and luxury events.',
   description:
