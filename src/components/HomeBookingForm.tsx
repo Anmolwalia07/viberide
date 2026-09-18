@@ -183,10 +183,10 @@ export function HomeBookingForm({
         w-full
         max-w-3xl
         min-w-0
-        bg-black
-        text-white
         border
         border-white/10
+        bg-black
+        text-white
       "
     >
       {/* =================================================
@@ -219,8 +219,8 @@ export function HomeBookingForm({
           href={`tel:${site.phone.replace(/\s+/g, '')}`}
           aria-label={`Call us at ${site.phone}`}
           className="
-            shrink-0
             inline-flex
+            shrink-0
             items-center
             gap-1.5
             rounded-full
@@ -228,11 +228,11 @@ export function HomeBookingForm({
             px-3.5
             py-1.5
             text-xs
-            sm:text-[13px]
             font-medium
             text-white
             transition-colors
             hover:bg-[#a69269]
+            sm:text-[13px]
           "
         >
           <Phone size={12} />
@@ -255,11 +255,8 @@ export function HomeBookingForm({
           lg:grid-cols-6
         "
       >
-
         {/* =================================================
-            ROW 1 - PICKUP
-            Mobile/Tablet: Full width
-            Desktop: Half width
+            PICKUP
         ================================================= */}
 
         <div className="col-span-2 min-w-0 lg:col-span-3">
@@ -275,9 +272,7 @@ export function HomeBookingForm({
         </div>
 
         {/* =================================================
-            ROW 2 - DESTINATION
-            Mobile/Tablet: Full width
-            Desktop: Half width
+            DESTINATION
         ================================================= */}
 
         <div className="col-span-2 min-w-0 lg:col-span-3">
@@ -293,9 +288,7 @@ export function HomeBookingForm({
         </div>
 
         {/* =================================================
-            ROW 3 - DATE
-            Mobile/Tablet: Half width
-            Desktop: Half width
+            DATE
         ================================================= */}
 
         <div className="col-span-1 min-w-0 lg:col-span-3">
@@ -323,9 +316,7 @@ export function HomeBookingForm({
         </div>
 
         {/* =================================================
-            ROW 3 - TIME
-            Mobile/Tablet: Half width
-            Desktop: Half width
+            TIME
         ================================================= */}
 
         <div className="col-span-1 min-w-0 lg:col-span-3">
@@ -353,26 +344,30 @@ export function HomeBookingForm({
         </div>
 
         {/* =================================================
-            ROW 4 - PASSENGERS
-            Mobile/Tablet: Half width
-            Desktop: 1/3 width
+            PASSENGERS
         ================================================= */}
 
         <div className="col-span-1 min-w-0 lg:col-span-2">
           <Field label="Passengers">
             <div
               className="
-                quote-counter
                 flex
                 h-[34px]
                 w-full
+                min-w-0
                 items-center
                 justify-between
+                overflow-hidden
                 border
                 border-white/10
-                bg-black
-                text-white
+                !bg-black
+                !text-white
               "
+              style={{
+                backgroundColor: '#000000',
+                color: '#ffffff',
+                borderColor: 'rgba(255,255,255,0.1)',
+              }}
             >
               <button
                 type="button"
@@ -386,17 +381,32 @@ export function HomeBookingForm({
                   flex
                   h-full
                   w-10
+                  shrink-0
                   items-center
                   justify-center
-                  text-neutral-300
+                  !bg-transparent
+                  !text-white
+                  text-base
+                  font-normal
                   transition-colors
-                  hover:bg-white/10
+                  hover:!bg-white/10
                 "
               >
                 -
               </button>
 
-              <output className="text-sm text-white">
+              <output
+                className="
+                  flex
+                  min-w-0
+                  flex-1
+                  items-center
+                  justify-center
+                  text-sm
+                  font-normal
+                  !text-white
+                "
+              >
                 {passengers}
               </output>
 
@@ -410,11 +420,15 @@ export function HomeBookingForm({
                   flex
                   h-full
                   w-10
+                  shrink-0
                   items-center
                   justify-center
-                  text-neutral-300
+                  !bg-transparent
+                  !text-white
+                  text-base
+                  font-normal
                   transition-colors
-                  hover:bg-white/10
+                  hover:!bg-white/10
                 "
               >
                 +
@@ -424,26 +438,30 @@ export function HomeBookingForm({
         </div>
 
         {/* =================================================
-            ROW 4 - SUITCASES
-            Mobile/Tablet: Half width
-            Desktop: 1/3 width
+            SUITCASES
         ================================================= */}
 
         <div className="col-span-1 min-w-0 lg:col-span-2">
           <Field label="Suitcases">
             <div
               className="
-                quote-counter
                 flex
                 h-[34px]
                 w-full
+                min-w-0
                 items-center
                 justify-between
+                overflow-hidden
                 border
                 border-white/10
-                bg-black
-                text-white
+                !bg-black
+                !text-white
               "
+              style={{
+                backgroundColor: '#000000',
+                color: '#ffffff',
+                borderColor: 'rgba(255,255,255,0.1)',
+              }}
             >
               <button
                 type="button"
@@ -457,17 +475,32 @@ export function HomeBookingForm({
                   flex
                   h-full
                   w-10
+                  shrink-0
                   items-center
                   justify-center
-                  text-neutral-300
+                  !bg-transparent
+                  !text-white
+                  text-base
+                  font-normal
                   transition-colors
-                  hover:bg-white/10
+                  hover:!bg-white/10
                 "
               >
                 -
               </button>
 
-              <output className="text-sm text-white">
+              <output
+                className="
+                  flex
+                  min-w-0
+                  flex-1
+                  items-center
+                  justify-center
+                  text-sm
+                  font-normal
+                  !text-white
+                "
+              >
                 {luggage}
               </output>
 
@@ -481,11 +514,15 @@ export function HomeBookingForm({
                   flex
                   h-full
                   w-10
+                  shrink-0
                   items-center
                   justify-center
-                  text-neutral-300
+                  !bg-transparent
+                  !text-white
+                  text-base
+                  font-normal
                   transition-colors
-                  hover:bg-white/10
+                  hover:!bg-white/10
                 "
               >
                 +
@@ -495,9 +532,7 @@ export function HomeBookingForm({
         </div>
 
         {/* =================================================
-            ROW 5 - FLEET
-            Mobile/Tablet: Full width
-            Desktop: 1/3 width
+            FLEET
         ================================================= */}
 
         <div className="col-span-2 min-w-0 lg:col-span-2">
@@ -544,9 +579,7 @@ export function HomeBookingForm({
         </div>
 
         {/* =================================================
-            ROW 6 - FULL NAME
-            Mobile/Tablet: Half width
-            Desktop: Half width
+            FULL NAME
         ================================================= */}
 
         <div className="col-span-1 min-w-0 lg:col-span-3">
@@ -562,9 +595,7 @@ export function HomeBookingForm({
         </div>
 
         {/* =================================================
-            ROW 6 - PHONE
-            Mobile/Tablet: Half width
-            Desktop: Half width
+            PHONE
         ================================================= */}
 
         <div className="col-span-1 min-w-0 lg:col-span-3">
@@ -580,9 +611,7 @@ export function HomeBookingForm({
         </div>
 
         {/* =================================================
-            ROW 7 - EMAIL
-            Mobile/Tablet: Full width
-            Desktop: Full width
+            EMAIL
         ================================================= */}
 
         <div className="col-span-2 min-w-0 lg:col-span-6">
@@ -873,7 +902,7 @@ function Field({
           [&_select]:!border-gray-300
           [&_select]:!bg-black
           [&_select]:!px-2.5
-          [&_select]:!text-[12px]
+          [&_select]:!text-[11px]
           [&_select]:!text-white
           [&_select]:!outline-none
           [&_select]:focus:!border-[#b9a47a]
