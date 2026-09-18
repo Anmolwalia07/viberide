@@ -28,7 +28,7 @@ export function WhatsAppFloatingButton({ phone }: WhatsAppFloatingButtonProps) {
   }, [isOpen]);
 
   return (
-    <aside aria-label="Contact options" className="fixed bottom-5 right-5 z-50 sm:bottom-6 sm:right-6">
+    <aside aria-label="Contact options" className="fixed bottom-5 right-5 z-50 flex flex-col items-end sm:bottom-6 sm:right-6">
       <div
         id="contact-options"
         className={`mb-3 flex flex-col items-end gap-3 transition-all duration-300 ${
@@ -90,7 +90,7 @@ export function WhatsAppFloatingButton({ phone }: WhatsAppFloatingButtonProps) {
         aria-expanded={isOpen}
         aria-controls="contact-options"
         aria-label={isOpen ? 'Close contact options' : 'Open contact options'}
-        className="group flex h-14 w-14 items-center justify-center rounded-full bg-[#111315] text-white shadow-[0_4px_20px_rgba(17,19,21,0.45)] transition-all duration-300 hover:scale-110 hover:shadow-[0_6px_28px_rgba(17,19,21,0.65)] active:scale-95 sm:h-16 sm:w-16"
+        className="group self-end flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#111315] shadow-[0_4px_20px_rgba(17,19,21,0.25)] transition-all duration-300 hover:scale-110 hover:shadow-[0_6px_28px_rgba(17,19,21,0.4)] active:scale-95 sm:h-16 sm:w-16"
       >
         {isOpen ? (
           <X className="h-7 w-7 transition-transform duration-300 group-hover:rotate-90 sm:h-8 sm:w-8" aria-hidden="true" />
