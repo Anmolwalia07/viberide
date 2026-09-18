@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { SeoJsonLd } from '@/components/SeoJsonLd';
 
 type FAQItem = {
@@ -23,12 +24,14 @@ export function LocationLandingPage({
   intro,
   highlights,
   faqs,
+  breadcrumbs,
   relatedLinks = [],
   jsonLd,
 }: LocationLandingPageProps) {
   return (
     <main className="pt-28">
       <div className="container section">
+        {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
         <div className="eyebrow">Service area</div>
         <h1 className="serif mt-5 max-w-4xl text-5xl md:text-7xl">{title}</h1>
         <p className="mt-8 max-w-3xl text-lg leading-8 text-neutral-300">{intro}</p>
