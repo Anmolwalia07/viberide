@@ -67,57 +67,86 @@ export const services = [
 export const fleet = [
   {
     id: 'audi-suv',
-    title: 'Audi SUV',
-    imageUrl: '/Audi SUV.webp',
-    description: 'A premium luxury SUV combining generous space, refined comfort and a commanding presence for executive and private journeys.',
-    capacity: 6,
-    luggageCapacity: 4,
-    features: 'Premium leather interior · Climate control · Spacious cabin · Executive comfort',
+    title: 'Audi SUV (Q7)',
+    imageUrl: '/audi-suv-q7.png',
+    description:
+      'A premium Audi Q7 SUV offering generous passenger space, refined comfort and excellent luggage capacity for executive and private journeys.',
+    capacity: 4,
+    luggageCapacity: 5,
+    features:
+      'Audi Q7 · Premium leather interior · Climate control · Spacious cabin · Executive comfort · 4 passengers · 4–5 luggage',
   },
+
   {
     id: 'audi-sedan',
-    title: 'Audi Sedan',
-    imageUrl: '/Audi Sedan.webp',
-    description: 'A refined executive sedan offering a quiet, comfortable cabin for corporate travel, airport transfers and private journeys.',
-    capacity: 3,
+    title: 'Audi Sedan (E6)',
+    imageUrl: '/audi-sedan-e6.png',
+    description:
+      'A refined Audi sedan offering a quiet and comfortable cabin for corporate travel, airport transfers and private journeys.',
+    capacity: 4,
     luggageCapacity: 2,
-    features: 'Leather interior · Quiet cabin · Rear comfort · Business-ready space',
+    features:
+      'Audi E6 · Leather interior · Quiet cabin · Rear comfort · Business-ready space · 4 passengers · 2 suitcases',
   },
+
   {
     id: 'bmw-sedan',
-    title: 'BMW Sedan',
-    imageUrl: '/BMW Sedan.webp',
-    description: 'A luxurious and dynamic sedan perfect for executive transport, offering superior comfort and advanced technology.',
-    capacity: 3,
+    title: 'BMW Sedan (5 Series)',
+    imageUrl: '/bmw-5-series.png',
+    description:
+      'A luxurious BMW 5 Series sedan designed for executive transport, combining premium comfort with a smooth and refined driving experience.',
+    capacity: 4,
     luggageCapacity: 2,
-    features: 'Luxury interior · Premium sound · Advanced climate control · Smooth ride',
+    features:
+      'BMW 5 Series · Luxury interior · Premium sound · Advanced climate control · Smooth ride · 4 passengers · 2 suitcases',
   },
+
   {
     id: 'mercedes-suv',
-    title: 'Mercedes SUV',
-    imageUrl: '/Mercedes SUV.webp',
-    description: 'A top-tier luxury SUV providing exceptional comfort, elevated views, and ample space for luggage and passengers.',
-    capacity: 6,
+    title: 'Mercedes SUV (GLE)',
+    imageUrl: '/mercedes-gle.png',
+    description:
+      'A premium Mercedes-Benz GLE SUV providing exceptional comfort, generous passenger space and excellent luggage capacity.',
+    capacity: 4,
     luggageCapacity: 4,
-    features: 'Premium leather · Panoramic roof · Advanced safety · Spacious seating',
+    features:
+      'Mercedes-Benz GLE · Premium leather · Panoramic roof · Advanced safety · Spacious seating · 4 passengers · 4 luggage',
   },
+
   {
     id: 'mercedes-sedan',
-    title: 'Mercedes Sedan',
-    imageUrl: '/Mercedes Sedan.webp',
-    description: 'The epitome of luxury sedans, delivering an unparalleled ride experience for discerning travelers.',
-    capacity: 3,
+    title: 'Mercedes Sedan (E Class)',
+    imageUrl: '/mercedes-e-class.png',
+    description:
+      'A sophisticated Mercedes-Benz E Class sedan delivering a comfortable and refined travel experience for business and private journeys.',
+    capacity: 4,
     luggageCapacity: 2,
-    features: 'Executive seating · Ambient lighting · Whisper-quiet cabin · Premium finishes',
+    features:
+      'Mercedes-Benz E Class · Executive seating · Ambient lighting · Whisper-quiet cabin · Premium finishes · 4 passengers · 2 suitcases',
   },
+
   {
     id: 'mercedes-van',
     title: 'Mercedes Van',
-    imageUrl: '/Mercedes Van.webp',
-    description: 'A sophisticated luxury people mover designed for families, corporate groups and longer journeys requiring additional space.',
+    imageUrl: '/mercedes-sprinter.png',
+    description:
+      'A spacious Mercedes-Benz luxury van designed for larger groups, corporate travel, airport transfers and journeys requiring substantial luggage space.',
+    capacity: 12,
+    luggageCapacity: 10,
+    features:
+      'Mercedes-Benz Van · 12 passengers · 10+ luggage · Luxury interior · Flexible seating · Generous luggage space · Easy access',
+  },
+
+  {
+    id: 'mercedes-v-class',
+    title: 'Mercedes Van (V Class)',
+    imageUrl: '/mercedes-v-class.png',
+    description:
+      'A premium Mercedes-Benz V Class people mover offering flexible seating, generous luggage space and a comfortable experience for families and groups.',
     capacity: 7,
     luggageCapacity: 6,
-    features: 'Luxury interior · Flexible seating · Generous luggage space · Easy access',
+    features:
+      'Mercedes-Benz V Class · 7 passengers · 6+ suitcases · Luxury interior · Flexible seating · Generous luggage space · Easy access',
   },
 ];
 
