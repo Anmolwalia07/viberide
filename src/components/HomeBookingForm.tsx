@@ -223,7 +223,7 @@ export function HomeBookingForm({
             shrink-0
             items-center
             gap-1.5
-            rounded-full
+            rounded
             bg-[#b9a47a]
             px-3.5
             py-1.5

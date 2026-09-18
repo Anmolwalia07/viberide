@@ -56,7 +56,7 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
           {isConfigured(site.phone) && (
             <a
               href={`tel:${site.phone.replace(/\s+/g, '')}`}
-              className="phone-blink flex items-center gap-2.5 text-[15px] lg:text-[17px] font-bold tracking-wide text-white transition-colors hover:text-[#b9a47a] whitespace-nowrap"
+              className="phone-blink p-2   border-white/40 border-2 flex items-center gap-2.5 text-[15px] lg:text-[17px] font-bold tracking-wide text-white transition-colors hover:text-[#b9a47a] whitespace-nowrap"
               aria-label={`Call us at ${site.phone}`}
             >
               <Phone size={18} className="text-[#b9a47a] shrink-0" />
@@ -64,13 +64,13 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
             </a>
           )}
 
-          {/* Booking */}
+          {/* Booking
           <Link
             href="/#quote-form"
             className="btn"
           >
             GET A QUOTE
-          </Link>
+          </Link> */}
         </div>
 
         {/* Mobile Header Actions */}
