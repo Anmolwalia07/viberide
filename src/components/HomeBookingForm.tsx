@@ -645,19 +645,21 @@ export function HomeBookingForm({
         className="
           mt-3
           grid
-          gap-2
+          gap-2.5
           border-t
           border-white/10
-          pt-3
+          pt-4
           sm:grid-cols-2
         "
       >
         <span
           className="
             col-span-full
-            text-[11px]
+            mb-0.5
+            text-[10px]
+            font-medium
             uppercase
-            tracking-[.12em]
+            tracking-[.18em]
             text-neutral-400
           "
         >
@@ -672,19 +674,25 @@ export function HomeBookingForm({
         <label
           className="
             flex
+            min-h-11
             items-center
-            gap-2
-            text-sm
+            gap-3
+            rounded border border-white/10 bg-white/[0.03] px-4 font-bold
+            text-[13px]
             text-neutral-300
+            transition-colors hover:border-[#b9a47a]/60 hover:bg-[#b9a47a]/[0.06] hover:text-white
+            [&:has(input:checked)]:border-[#b9a47a]
+            [&:has(input:checked)]:bg-[#b9a47a]/[0.14]
+            [&:has(input:checked)]:text-white
           "
         >
           <input
             name="babySeat"
             type="checkbox"
             className="
-              h-4
-              w-4
-              accent-[#b9a47a]
+              sr-only
+              shrink-0
+              cursor-pointer
             "
           />
 
@@ -696,19 +704,25 @@ export function HomeBookingForm({
         <label
           className="
             flex
+            min-h-11
             items-center
-            gap-2
-            text-sm
+            gap-3
+            rounded border border-white/10 bg-white/[0.03] px-4 font-bold
+            text-[13px]
             text-neutral-300
+            transition-colors hover:border-[#b9a47a]/60 hover:bg-[#b9a47a]/[0.06] hover:text-white
+            [&:has(input:checked)]:border-[#b9a47a]
+            [&:has(input:checked)]:bg-[#b9a47a]/[0.14]
+            [&:has(input:checked)]:text-white
           "
         >
           <input
             name="boosterSeat"
             type="checkbox"
             className="
-              h-4
-              w-4
-              accent-[#b9a47a]
+              sr-only
+              shrink-0
+              cursor-pointer
             "
           />
 
@@ -720,19 +734,25 @@ export function HomeBookingForm({
         <label
           className="
             flex
+            min-h-11
             items-center
-            gap-2
-            text-sm
+            gap-3
+            rounded border border-white/10 bg-white/[0.03] px-4 font-bold
+            text-[13px]
             text-neutral-300
+            transition-colors hover:border-[#b9a47a]/60 hover:bg-[#b9a47a]/[0.06] hover:text-white
+            [&:has(input:checked)]:border-[#b9a47a]
+            [&:has(input:checked)]:bg-[#b9a47a]/[0.14]
+            [&:has(input:checked)]:text-white
           "
         >
           <input
             name="largeExtraLuggage"
             type="checkbox"
             className="
-              h-4
-              w-4
-              accent-[#b9a47a]
+              sr-only
+              shrink-0
+              cursor-pointer
             "
           />
 
