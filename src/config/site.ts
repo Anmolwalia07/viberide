@@ -70,11 +70,11 @@ export const fleet = [
     title: 'Audi SUV (Q7)',
     imageUrl: '/audi-suv-q7.png',
     description:
-      'A premium Audi Q7 SUV offering generous passenger space, refined comfort and excellent luggage capacity for executive and private journeys.',
+      'A premium Audi Q7 SUV offering generous passenger space, refined comfort and excellent suitcase capacity for executive and private journeys.',
     capacity: 4,
     luggageCapacity: 5,
     features:
-      'Audi Q7 · Premium leather interior · Climate control · Spacious cabin · Executive comfort · 4 passengers · 4–5 luggage',
+      'Audi Q7 · Premium leather interior · Climate control · Spacious cabin · Executive comfort · 4 passengers · 4–5 suitcases',
   },
 
   {
@@ -106,11 +106,11 @@ export const fleet = [
     title: 'Mercedes SUV (GLE)',
     imageUrl: '/mercedes-gle.png',
     description:
-      'A premium Mercedes-Benz GLE SUV providing exceptional comfort, generous passenger space and excellent luggage capacity.',
+      'A premium Mercedes-Benz GLE SUV providing exceptional comfort, generous passenger space and excellent suitcase capacity.',
     capacity: 4,
     luggageCapacity: 4,
     features:
-      'Mercedes-Benz GLE · Premium leather · Panoramic roof · Advanced safety · Spacious seating · 4 passengers · 4 luggage',
+      'Mercedes-Benz GLE · Premium leather · Panoramic roof · Advanced safety · Spacious seating · 4 passengers · 4 suitcases',
   },
 
   {
@@ -130,11 +130,11 @@ export const fleet = [
     title: 'Mercedes Van',
     imageUrl: '/mercedes-sprinter.png',
     description:
-      'A spacious Mercedes-Benz luxury van designed for larger groups, corporate travel, airport transfers and journeys requiring substantial luggage space.',
+      'A spacious Mercedes-Benz luxury van designed for larger groups, corporate travel, airport transfers and journeys requiring substantial suitcase space.',
     capacity: 12,
     luggageCapacity: 10,
     features:
-      'Mercedes-Benz Van · 12 passengers · 10+ luggage · Luxury interior · Flexible seating · Generous luggage space · Easy access',
+      'Mercedes-Benz Van · 12 passengers · 10+ suitcases · Luxury interior · Flexible seating · Generous suitcase space · Easy access',
   },
 
   {
@@ -142,11 +142,11 @@ export const fleet = [
     title: 'Mercedes Van (V Class)',
     imageUrl: '/mercedes-v-class.png',
     description:
-      'A premium Mercedes-Benz V Class people mover offering flexible seating, generous luggage space and a comfortable experience for families and groups.',
+      'A premium Mercedes-Benz V Class people mover offering flexible seating, generous suitcase space and a comfortable experience for families and groups.',
     capacity: 7,
     luggageCapacity: 6,
     features:
-      'Mercedes-Benz V Class · 7 passengers · 6+ suitcases · Luxury interior · Flexible seating · Generous luggage space · Easy access',
+      'Mercedes-Benz V Class · 7 passengers · 6+ suitcases · Luxury interior · Flexible seating · Generous suitcase space · Easy access',
   },
 ];
 

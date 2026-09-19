@@ -27,7 +27,7 @@ const faqs = [
   {
     question: 'Are family or group bookings available?',
     answer:
-      'Depending on the vehicle selected, we can accommodate family travel, business groups and other private journeys with ample luggage space and a premium experience.',
+      'Depending on the vehicle selected, we can accommodate family travel, business groups and other private journeys with ample suitcase space and a premium experience.',
   },
 ];
 

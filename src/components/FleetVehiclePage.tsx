@@ -21,7 +21,7 @@ export function FleetVehiclePage({ vehicle }: { vehicle: PublicVehicle }) {
             <p className="mt-7 text-lg leading-8 text-neutral-300">{vehicle.description}</p>
             <div className="mt-8 grid grid-cols-2 gap-4">
               <div className="rounded-2xl border border-white/10 bg-[#111214] p-5"><div className="eyebrow">Capacity</div><p className="mt-2 text-xl text-white">{vehicle.capacity} passengers</p></div>
-              <div className="rounded-2xl border border-white/10 bg-[#111214] p-5"><div className="eyebrow">Luggage</div><p className="mt-2 text-xl text-white">{vehicle.luggageCapacity}+ pieces</p></div>
+              <div className="rounded-2xl border border-white/10 bg-[#111214] p-5"><div className="eyebrow">Suitcases</div><p className="mt-2 text-xl text-white">{vehicle.luggageCapacity}+ suitcases</p></div>
             </div>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/#quote-form" className="btn">Request this vehicle</Link>

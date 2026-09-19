@@ -186,7 +186,7 @@ export default function Home() {
                     </span>
 
                     <span>
-                      {vehicle.luggageCapacity} luggage
+                      {vehicle.luggageCapacity} suitcases
                     </span>
                   </div>
 
@@ -334,7 +334,14 @@ export default function Home() {
       <section className="section pb-24">
         <div className="container max-w-4xl text-neutral-400 text-sm leading-7 space-y-8">
           <div className="space-y-4">
-            <h2 className="serif text-2xl text-white">The standard for chauffeur service in Melbourne</h2>
+            <div className="eyebrow">Melbourne chauffeur services</div>
+            <h2 className="serif text-3xl text-white md:text-4xl">
+              Private travel for every Melbourne journey
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="serif text-2xl text-white">The standard for chauffeur service in Melbourne</h3>
             <p>
               When navigating a bustling global city, time and presentation are invaluable. Veloura Chauffeurs provides an exceptional <strong>chauffeur service in Melbourne</strong>, prioritizing your privacy, safety, and comfort. Whether you require a seamless transition from the runway to the boardroom, or dedicated transport for a high-profile event, our professional Melbourne chauffeurs ensure every detail is meticulously managed.
             </p>
@@ -346,7 +353,7 @@ export default function Home() {
           <div className="space-y-4 mt-12">
             <h3 className="serif text-xl text-white">Melbourne Airport transfers without the wait</h3>
             <p>
-              Air travel demands precision. Our <strong>Melbourne Airport transfers</strong> are designed to completely eliminate the stress of arrivals and departures at both Tullamarine and Avalon airports. We actively monitor flight paths and terminal schedules to adjust for early arrivals or unexpected delays. Your private chauffeur will be waiting in the designated arrivals hall, ready to assist with your luggage and guide you to your waiting premium luxury vehicle. Avoid the uncertainty of ride-sharing and the delays of public transport with a dedicated airport chauffeur.
+              Air travel demands precision. Our <strong>Melbourne Airport transfers</strong> are designed to completely eliminate the stress of arrivals and departures at both Tullamarine and Avalon airports. We actively monitor flight paths and terminal schedules to adjust for early arrivals or unexpected delays. Your private chauffeur will be waiting in the designated arrivals hall, ready to assist with your suitcases and guide you to your waiting premium luxury vehicle. Avoid the uncertainty of ride-sharing and the delays of public transport with a dedicated airport chauffeur.
             </p>
           </div>
 

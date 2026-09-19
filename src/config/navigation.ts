@@ -17,6 +17,17 @@ export const serviceNavigation = [
   { href: '/services/luxury-car-with-driver-melbourne', label: 'Luxury Car With Driver' },
 ];
 
+export const fleetNavigation = [
+  { href: '/fleet', label: 'All Vehicles' },
+  { href: '/fleet/audi-suv', label: 'Audi SUV (Q7)' },
+  { href: '/fleet/audi-sedan', label: 'Audi Sedan (E6)' },
+  { href: '/fleet/bmw-sedan', label: 'BMW Sedan (5 Series)' },
+  { href: '/fleet/mercedes-suv', label: 'Mercedes SUV (GLE)' },
+  { href: '/fleet/mercedes-sedan', label: 'Mercedes Sedan (E Class)' },
+  { href: '/fleet/mercedes-van', label: 'Mercedes Van' },
+  { href: '/fleet/mercedes-v-class', label: 'Mercedes Van (V Class)' },
+];
+
 export const areaNavigation = [
   { href: '/service-areas', label: 'All Service Areas' },
   { href: '/service-areas/melbourne-cbd', label: 'Melbourne CBD' },

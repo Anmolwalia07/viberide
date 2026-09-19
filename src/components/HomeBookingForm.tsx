@@ -54,7 +54,7 @@ export function HomeBookingForm({
       form.get('babySeat') ? 'Baby seat' : '',
       form.get('boosterSeat') ? 'Booster seat' : '',
       form.get('largeExtraLuggage')
-        ? 'Large extra luggage'
+        ? 'Large extra suitcases'
         : '',
     ]
       .filter(Boolean)
@@ -89,7 +89,7 @@ export function HomeBookingForm({
         `Date: ${data.date}`,
         `Time: ${data.time}`,
         `Passengers: ${data.passengers}`,
-        `Luggage: ${data.luggage}`,
+        `Suitcases: ${data.luggage}`,
         `Fleet: ${data.fleet}`,
         `Vehicle: ${data.vehicle}`,
         `Name: ${data.name}`,
@@ -729,7 +729,7 @@ export function HomeBookingForm({
           Booster seat [4 to 7 years]
         </label>
 
-        {/* LARGE EXTRA LUGGAGE */}
+        {/* LARGE EXTRA SUITCASES */}
 
         <label
           className="
@@ -756,7 +756,7 @@ export function HomeBookingForm({
             "
           />
 
-          Large extra luggage
+          Large extra suitcases
         </label>
       </div>
 

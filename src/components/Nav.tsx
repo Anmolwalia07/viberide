@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { site as defaultSite } from '@/config/site';
 import {
   areaNavigation,
+  fleetNavigation,
   primaryNavigation,
   serviceNavigation,
 } from '@/config/navigation';
@@ -21,9 +22,11 @@ export function Nav({
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [fleetOpen, setFleetOpen] = useState(false);
   const [areasOpen, setAreasOpen] = useState(false);
 
   const servicesRef = useRef<HTMLDivElement>(null);
+  const fleetRef = useRef<HTMLDivElement>(null);
   const areasRef = useRef<HTMLDivElement>(null);
 
   /* =========================
@@ -57,6 +60,10 @@ export function Nav({
     isActive('/services') ||
     serviceNavigation.some((link) => isActive(link.href));
 
+  const fleetActive =
+    isActive('/fleet') ||
+    fleetNavigation.some((link) => isActive(link.href));
+
   const areasActive =
     isActive('/service-areas') ||
     areaNavigation.some((link) => isActive(link.href));
@@ -68,12 +75,14 @@ export function Nav({
   const closeAllMenus = () => {
     setMobileOpen(false);
     setServicesOpen(false);
+    setFleetOpen(false);
     setAreasOpen(false);
   };
 
   const closeMobileMenu = () => {
     setMobileOpen(false);
     setServicesOpen(false);
+    setFleetOpen(false);
     setAreasOpen(false);
   };
 
@@ -90,6 +99,13 @@ export function Nav({
         !servicesRef.current.contains(target)
       ) {
         setServicesOpen(false);
+      }
+
+      if (
+        fleetRef.current &&
+        !fleetRef.current.contains(target)
+      ) {
+        setFleetOpen(false);
       }
 
       if (
@@ -203,6 +219,7 @@ export function Nav({
             className="relative"
             onMouseEnter={() => {
               setServicesOpen(true);
+              setFleetOpen(false);
               setAreasOpen(false);
             }}
             onMouseLeave={() => {
@@ -216,6 +233,7 @@ export function Nav({
               aria-current={servicesActive ? 'page' : undefined}
               onClick={() => {
                 setServicesOpen((value) => !value);
+                setFleetOpen(false);
                 setAreasOpen(false);
               }}
               className={`inline-flex appearance-none items-center gap-1 border-0 bg-transparent p-0 font-sans text-[11px] font-normal uppercase leading-normal tracking-[.15em] transition-colors ${
@@ -254,6 +272,98 @@ export function Nav({
             >
               <div className="border border-white/10 bg-[#0b0c0d] p-2 shadow-2xl">
                 {serviceNavigation.map((link) => {
+                  const active = isActive(link.href);
+
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={closeAllMenus}
+                      className={`block px-4 py-3 font-sans text-[10px] font-normal uppercase tracking-[.12em] transition-colors ${
+                        active
+                          ? 'bg-white/5 text-[#b9a47a]'
+                          : 'text-neutral-300 hover:bg-white/5 hover:text-white'
+                      }`}
+                    >
+                      <span className="flex items-center justify-between">
+                        {link.label}
+
+                        {active && (
+                          <span
+                            className="ml-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b9a47a]"
+                            aria-hidden="true"
+                          />
+                        )}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* =========================
+              FLEET
+          ========================== */}
+
+          <div
+            ref={fleetRef}
+            className="relative"
+            onMouseEnter={() => {
+              setFleetOpen(true);
+              setServicesOpen(false);
+              setAreasOpen(false);
+            }}
+            onMouseLeave={() => {
+              setFleetOpen(false);
+            }}
+          >
+            <button
+              type="button"
+              aria-expanded={fleetOpen}
+              aria-haspopup="true"
+              aria-current={fleetActive ? 'page' : undefined}
+              onClick={() => {
+                setFleetOpen((value) => !value);
+                setServicesOpen(false);
+                setAreasOpen(false);
+              }}
+              className={`inline-flex appearance-none items-center gap-1 border-0 bg-transparent p-0 font-sans text-[11px] font-normal uppercase leading-normal tracking-[.15em] transition-colors ${
+                fleetActive
+                  ? 'text-[#b9a47a]'
+                  : 'text-neutral-300 hover:text-white'
+              }`}
+            >
+              <span className={`relative text-[11px] leading-normal ${fleetActive ? 'text-[#b9a47a]' : ''}`}>
+                Fleet
+                {fleetActive && (
+                  <span
+                    className="absolute -bottom-2 left-0 right-0 h-px bg-[#b9a47a]"
+                    aria-hidden="true"
+                  />
+                )}
+              </span>
+
+              <ChevronDown
+                size={13}
+                aria-hidden="true"
+                className={`transition-transform duration-200 ${
+                  fleetOpen ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+
+            {/* FLEET DROPDOWN */}
+
+            <div
+              className={`absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4 transition-all duration-200 ${
+                fleetOpen
+                  ? 'visible translate-y-0 opacity-100'
+                  : 'invisible translate-y-2 opacity-0'
+              }`}
+            >
+              <div className="border border-white/10 bg-[#0b0c0d] p-2 shadow-2xl">
+                {fleetNavigation.map((link) => {
                   const active = isActive(link.href);
 
                   return (
@@ -380,7 +490,7 @@ export function Nav({
           ========================== */}
 
           {primaryNavigation
-            .filter((link) => link.href !== '/')
+            .filter((link) => link.href !== '/' && link.href !== '/fleet')
             .map((link) => {
               const active = isActive(link.href);
 
@@ -463,6 +573,7 @@ export function Nav({
             onClick={() => {
               setMobileOpen((value) => !value);
               setServicesOpen(false);
+              setFleetOpen(false);
               setAreasOpen(false);
             }}
             className="relative z-[60] flex h-11 w-11 items-center justify-center text-white"
@@ -532,6 +643,7 @@ export function Nav({
               aria-current={servicesActive ? 'page' : undefined}
               onClick={() => {
                 setServicesOpen((value) => !value);
+                setFleetOpen(false);
                 setAreasOpen(false);
               }}
               className={`flex w-full items-center justify-between py-3 text-left font-sans text-sm font-normal uppercase tracking-[.15em] transition-colors ${
@@ -596,6 +708,7 @@ export function Nav({
               onClick={() => {
                 setAreasOpen((value) => !value);
                 setServicesOpen(false);
+                setFleetOpen(false);
               }}
               className={`flex w-full items-center justify-between py-3 text-left font-sans text-sm font-normal uppercase tracking-[.15em] transition-colors ${
                 areasActive
@@ -613,6 +726,70 @@ export function Nav({
                 }`}
               />
             </button>
+
+            {/* FLEET */}
+
+            <button
+              type="button"
+              aria-expanded={fleetOpen}
+              aria-current={fleetActive ? 'page' : undefined}
+              onClick={() => {
+                setFleetOpen((value) => !value);
+                setServicesOpen(false);
+                setAreasOpen(false);
+              }}
+              className={`flex w-full items-center justify-between py-3 text-left font-sans text-sm font-normal uppercase tracking-[.15em] transition-colors ${
+                fleetActive
+                  ? 'text-[#b9a47a]'
+                  : 'text-neutral-200 hover:text-white'
+              }`}
+            >
+              <span className={fleetActive ? 'text-[#b9a47a]' : ''}>Fleet</span>
+
+              <ChevronDown
+                size={17}
+                aria-hidden="true"
+                className={`transition-transform duration-200 ${
+                  fleetOpen ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+
+            {/* FLEET CHILDREN */}
+
+            <div
+              className={`ml-4 grid overflow-hidden border-l border-white/10 pl-4 transition-all duration-200 ${
+                fleetOpen
+                  ? 'mb-2 max-h-[500px] opacity-100'
+                  : 'max-h-0 opacity-0'
+              }`}
+            >
+              {fleetNavigation.map((link) => {
+                const active = isActive(link.href);
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMobileMenu}
+                    className={`flex items-center justify-between py-2 font-sans text-xs font-normal uppercase tracking-[.12em] transition-colors ${
+                      active
+                        ? 'text-[#b9a47a]'
+                        : 'text-neutral-400 hover:text-white'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+
+                    {active && (
+                      <span
+                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#b9a47a]"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
 
             {/* SERVICE AREA CHILDREN */}
 
@@ -653,7 +830,7 @@ export function Nav({
             {/* PRIMARY NAVIGATION */}
 
             {primaryNavigation
-              .filter((link) => link.href !== '/')
+              .filter((link) => link.href !== '/' && link.href !== '/fleet')
               .map((link) => {
                 const active = isActive(link.href);
 

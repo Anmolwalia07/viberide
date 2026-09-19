@@ -4,7 +4,7 @@ import { getSiteContent } from '@/lib/content';
 import type { Metadata } from 'next';
 
 const details: Record<string, string> = {
-  'airport-transfers': 'Arrive at the terminal composed. A professional Melbourne airport chauffeur experience planned around pickup timing, luggage and the practical realities of air travel.',
+  'airport-transfers': 'Arrive at the terminal composed. A professional Melbourne airport chauffeur experience planned around pickup timing, suitcase needs and the practical realities of air travel.',
   'corporate-chauffeur': 'Move between meetings, offices, hotels and airports with a private corporate chauffeur experience designed for focus, discretion and schedule control across Melbourne.',
   'weddings-events': 'Make arrivals and departures part of the occasion. Premium chauffeur transport to support wedding parties, guests, productions and special events.',
   'hourly-chauffeur': 'Keep the car and chauffeur available while your itinerary changes. Ideal for multi-stop days, meetings, shopping, events and flexible private travel around Victoria.',

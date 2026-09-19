@@ -36,9 +36,9 @@ const faqs = [
       'We plan around your flight schedule and travel requirements, helping with early morning departures, delayed flights and late-evening arrivals.',
   },
   {
-    question: 'Is luggage handled by the chauffeur?',
+    question: 'Are suitcases handled by the chauffeur?',
     answer:
-      'Our chauffeurs are available for practical, comfortable door-to-door airport travel and can assist with luggage as needed within the normal service arrangement.',
+      'Our chauffeurs are available for practical, comfortable door-to-door airport travel and can assist with suitcases as needed within the normal service arrangement.',
   },
 ];
 
@@ -47,7 +47,7 @@ export default function Page() {
     <ServiceLandingPage
       eyebrow="Airport transfers"
       title="Private Melbourne Airport Transfers"
-      intro="Travel to or from Melbourne Airport with a calm, reliable chauffeur service designed around your schedule, luggage and destination. Whether you need a Melbourne airport to city transfer, an airport transfer from Melbourne Airport to the city, or a direct chauffeur service for the CBD, Southbank, Richmond, Moonee Ponds or a nearby business meeting, your airport travel is handled with privacy and precision."
+      intro="Travel to or from Melbourne Airport with a calm, reliable chauffeur service designed around your schedule, suitcase needs and destination. Whether you need a Melbourne airport to city transfer, an airport transfer from Melbourne Airport to the city, or a direct chauffeur service for the CBD, Southbank, Richmond, Moonee Ponds or a nearby business meeting, your airport travel is handled with privacy and precision."
       highlights={[
         { title: 'Melbourne Airport', description: 'Private pickup and drop-off for Tullamarine arrivals, departures and onward journeys.' },
         { title: 'CBD transfers', description: 'Direct chauffeur travel to the Melbourne CBD, Southbank, Docklands and surrounding commercial hubs.' },

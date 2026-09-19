@@ -57,7 +57,7 @@ export default function Fleet() {
 
                 <div className="mt-5 flex gap-5 text-xs text-neutral-500">
                   <span>{vehicle.capacity} passengers</span>
-                  <span>{vehicle.luggageCapacity} luggage</span>
+                  <span>{vehicle.luggageCapacity} suitcases</span>
                 </div>
 
                 <p className="mt-5 text-xs text-neutral-500">
