@@ -82,7 +82,7 @@ export default function Home() {
       {/* Services                                                           */}
       {/* ------------------------------------------------------------------ */}
 
-      <section className="section">
+      <section className="section pb-16 md:pb-20">
         <div className="container">
           <SectionHeader
             eyebrow="A higher standard"
@@ -331,7 +331,7 @@ export default function Home() {
       {/* Premium SEO Content                                                */}
       {/* ------------------------------------------------------------------ */}
 
-      <section className="section pb-24">
+      <section className="section pt-0 pb-24">
         <div className="container max-w-4xl text-neutral-400 text-sm leading-7 space-y-8">
           <div className="space-y-4">
             <div className="eyebrow">Melbourne chauffeur services</div>
