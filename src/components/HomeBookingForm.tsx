@@ -625,7 +625,7 @@ export function HomeBookingForm({
             <textarea
               name="specialRequests"
               rows={2}
-              placeholder="Add anything else we should know about your journey"
+              placeholder="Add anything else we should know about your journey like flight number, hotel name, etc."
             />
           </Field>
         </div>
@@ -914,7 +914,7 @@ function Field({
 
           [&_textarea]:!box-border
           [&_textarea]:!block
-          [&_textarea]:!min-h-[96px]
+          [&_textarea]:!min-h-[46px]
           [&_textarea]:!w-full
           [&_textarea]:!min-w-0
           [&_textarea]:!max-w-full
