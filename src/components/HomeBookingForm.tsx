@@ -617,24 +617,18 @@ export function HomeBookingForm({
           </Field>
         </div>
 
-        {/* =================================================
-            SPECIAL REQUESTS
-        ================================================= */}
-
-        {/*
         <div className="col-span-2 min-w-0 lg:col-span-6">
           <Field
-            label="Special requests"
+            label="Special instructions"
             hint="Optional"
           >
             <textarea
               name="specialRequests"
-              rows={3}
-              placeholder="Child seat, accessibility, extra stops or anything else we should know"
+              rows={2}
+              placeholder="Add anything else we should know about your journey"
             />
           </Field>
         </div>
-        */}
       </div>
 
       {/* =================================================
