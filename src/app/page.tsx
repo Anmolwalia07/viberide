@@ -328,52 +328,6 @@ export default function Home() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Premium SEO Content                                                */}
-      {/* ------------------------------------------------------------------ */}
-
-      <section className="section pt-0 pb-16 md:pb-20">
-        <div className="container max-w-4xl text-neutral-400 text-sm leading-7 space-y-6 md:space-y-7">
-          <div className="space-y-4">
-            <div className="eyebrow">Melbourne chauffeur services</div>
-            <h2 className="serif text-3xl text-white md:text-4xl">
-              Private travel for every Melbourne journey
-            </h2>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="serif text-2xl text-white">The standard for chauffeur service in Melbourne</h3>
-            <p>
-              When navigating a bustling global city, time and presentation are invaluable. Veloura Chauffeurs provides an exceptional <strong>chauffeur service in Melbourne</strong>, prioritizing your privacy, safety, and comfort. Whether you require a seamless transition from the runway to the boardroom, or dedicated transport for a high-profile event, our professional Melbourne chauffeurs ensure every detail is meticulously managed.
-            </p>
-            <p>
-              We operate a modern fleet of premium European vehicles, allowing us to deliver a luxurious, quiet, and consistently reliable private travel experience. Our approach removes the friction from modern transport, providing you with a sanctuary on the road.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="serif text-xl text-white">Melbourne Airport transfers without the wait</h3>
-            <p>
-              Air travel demands precision. Our <strong>Melbourne Airport transfers</strong> are designed to completely eliminate the stress of arrivals and departures at both Tullamarine and Avalon airports. We actively monitor flight paths and terminal schedules to adjust for early arrivals or unexpected delays. Your private chauffeur will be waiting in the designated arrivals hall, ready to assist with your suitcases and guide you to your waiting premium luxury vehicle. Avoid the uncertainty of ride-sharing and the delays of public transport with a dedicated airport chauffeur.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="serif text-xl text-white">Dedicated corporate chauffeur services</h3>
-            <p>
-              For the modern executive, travel time is an opportunity for preparation or rest. Our <strong>corporate chauffeur services</strong> are tailored for business professionals who require absolute discretion and punctuality. We frequently facilitate multi-stop roadshows, inter-office transit, and VIP client transportation across the Melbourne CBD and surrounding commercial hubs. With our executive fleet, including the Mercedes S-Class and Audi A8, you can conduct confidential calls and finalize presentations in a secure, whisper-quiet environment.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="serif text-xl text-white">Flexible point-to-point and private chauffeur options</h3>
-            <p>
-              Beyond corporate and airport logistics, we offer highly flexible <strong>private chauffeur Melbourne</strong> services for personal and family travel. Whether you need an hourly chauffeur for a day of shopping in South Yarra, a reliable <strong>point-to-point chauffeur</strong> for a regional winery tour, or elegant transport for a wedding, our service adapts to your itinerary. We service all major suburbs, from Toorak and Brighton to the Mornington Peninsula, ensuring that wherever your destination lies, you arrive in style.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------------------ */}
       {/* Final CTA                                                           */}
       {/* ------------------------------------------------------------------ */}
 
