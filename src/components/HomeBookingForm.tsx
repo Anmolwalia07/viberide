@@ -12,8 +12,10 @@ import { site } from '@/config/site';
 
 const fleetOptions = [
   'Luxury Sedan',
-  'Executive Sedan',
+  'Luxury SUV',
   'Luxury Van',
+  'Minivan',
+  'Coach bus',
   'No preference',
 ];
 
@@ -543,8 +545,11 @@ export function HomeBookingForm({
                 !border-gray-300
                 !bg-white
                 !px-2.5
+                !py-2
                 !text-[11px]
                 !text-black
+                !font-bold
+                !leading-4
                 !outline-none
                 focus:!border-[#b9a47a]
               "
