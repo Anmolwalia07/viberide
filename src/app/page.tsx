@@ -157,13 +157,13 @@ export default function Home() {
               <Reveal key={vehicle.id}>
                 <div className="overflow-hidden border border-black/10 bg-white p-7">
                   {/* Vehicle image */}
-                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
+                  <div className="relative aspect-[34/15] overflow-hidden bg-neutral-200">
                     <Image
                       src={vehicle.imageUrl || fleetImages[index % fleetImages.length]}
                       alt={vehicle.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition duration-700 hover:scale-105"
+                      className="object-contain transition duration-700 hover:scale-[1.02]"
                     />
                   </div>
 

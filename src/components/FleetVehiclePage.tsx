@@ -12,8 +12,8 @@ export function FleetVehiclePage({ vehicle }: { vehicle: PublicVehicle }) {
       <div className="container section">
         <Breadcrumbs items={[{ label: 'Fleet', href: '/fleet' }, { label: vehicle.title }]} />
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 bg-[#111214]">
-            <Image src={vehicle.imageUrl || '/og-image.svg'} alt={`${vehicle.title} luxury chauffeur vehicle in Melbourne`} fill priority className="object-cover" sizes="(min-width: 1024px) 60vw, 100vw" />
+          <div className="relative aspect-[34/15] overflow-hidden rounded-3xl border border-white/10 bg-[#111214]">
+            <Image src={vehicle.imageUrl || '/og-image.svg'} alt={`${vehicle.title} luxury chauffeur vehicle in Melbourne`} fill priority className="object-contain" sizes="(min-width: 1024px) 60vw, 100vw" />
           </div>
           <div>
             <div className="eyebrow">Veloura luxury fleet</div>
@@ -39,8 +39,8 @@ export function FleetVehiclePage({ vehicle }: { vehicle: PublicVehicle }) {
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {fleet.filter((item) => item.id !== vehicle.id).slice(0, 3).map((item) => (
               <Link key={item.id} href={`/fleet/${item.id}`} className="card group block p-4">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
-                  <Image src={item.imageUrl || '/og-image.svg'} alt={item.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(min-width: 768px) 33vw, 100vw" />
+                <div className="relative aspect-[34/15] overflow-hidden rounded-2xl">
+                  <Image src={item.imageUrl || '/og-image.svg'} alt={item.title} fill className="object-contain transition-transform duration-500 group-hover:scale-[1.02]" sizes="(min-width: 768px) 33vw, 100vw" />
                 </div>
                 <h3 className="serif mt-4 text-2xl transition-colors group-hover:text-[#d2bd8e]">{item.title}</h3>
               </Link>

@@ -34,12 +34,12 @@ export default function Fleet() {
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           {fleet.map((vehicle) => (
             <Link href={`/fleet/${vehicle.id}`} className="card group block p-5 transition-transform duration-300 hover:-translate-y-1" key={vehicle.id}>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+              <div className="relative aspect-[34/15] overflow-hidden rounded-2xl">
                 <Image
                   src={vehicle.imageUrl || '/og-image.svg'}
                   alt={vehicle.title}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                   sizes="(min-width: 768px) 33vw, 100vw"
                 />
               </div>

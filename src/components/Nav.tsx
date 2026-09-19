@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, Phone, X } from 'lucide-react';
-import { FaWhatsapp } from 'react-icons/fa';
+import { usePathname } from 'next/navigation';
+
 import { site as defaultSite } from '@/config/site';
 import {
   areaNavigation,
@@ -11,228 +12,703 @@ import {
   serviceNavigation,
 } from '@/config/navigation';
 
-export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
-  const [open, setOpen] = useState(false);
+export function Nav({
+  site = defaultSite,
+}: {
+  site?: typeof defaultSite;
+}) {
+  const pathname = usePathname();
 
-  const closeMenu = () => {
-    setOpen(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [areasOpen, setAreasOpen] = useState(false);
+
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const areasRef = useRef<HTMLDivElement>(null);
+
+  /* =========================
+     ACTIVE PAGE
+  ========================== */
+
+  const isActive = (href: string) => {
+    if (!href) return false;
+
+    const cleanHref = href.split('#')[0];
+
+    // Home only active on homepage
+    if (cleanHref === '/') {
+      return pathname === '/';
+    }
+
+    // Exact page
+    if (pathname === cleanHref) {
+      return true;
+    }
+
+    // Child pages
+    return pathname.startsWith(`${cleanHref}/`);
   };
+
+  /* =========================
+     SECTION ACTIVE STATES
+  ========================== */
+
+  const servicesActive =
+    isActive('/services') ||
+    serviceNavigation.some((link) => isActive(link.href));
+
+  const areasActive =
+    isActive('/service-areas') ||
+    areaNavigation.some((link) => isActive(link.href));
+
+  /* =========================
+     CLOSE ALL MENUS
+  ========================== */
+
+  const closeAllMenus = () => {
+    setMobileOpen(false);
+    setServicesOpen(false);
+    setAreasOpen(false);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    setServicesOpen(false);
+    setAreasOpen(false);
+  };
+
+  /* =========================
+     CLICK OUTSIDE
+  ========================== */
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+
+      if (
+        servicesRef.current &&
+        !servicesRef.current.contains(target)
+      ) {
+        setServicesOpen(false);
+      }
+
+      if (
+        areasRef.current &&
+        !areasRef.current.contains(target)
+      ) {
+        setAreasOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  /* =========================
+     ESCAPE KEY
+  ========================== */
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeAllMenus();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
+
+  /* =========================
+     LOCK BODY SCROLL
+  ========================== */
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
-      {/* Header */}
+      {/* =========================
+          HEADER
+      ========================== */}
+
       <div className="container mx-auto flex h-20 items-center justify-between px-5 sm:px-6 md:h-24">
-        {/* Logo */}
+
+        {/* =========================
+            LOGO
+        ========================== */}
+
         <Link
           href="/"
-          onClick={closeMenu}
-          className="relative z-50 text-sm uppercase tracking-[.25em]"
+          onClick={closeAllMenus}
+          className="relative z-[60] text-sm uppercase tracking-[.25em] text-white"
+          aria-label={`${site.name} home`}
         >
           {site.name}
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-8 text-[11px] uppercase tracking-[.15em] text-neutral-300 md:flex">
-          <div className="group relative">
-            <Link
-              href="/services"
-              className="flex items-center gap-1 transition-colors hover:text-white"
+        {/* =========================
+            DESKTOP NAVIGATION
+        ========================== */}
+
+        <nav
+          className="hidden items-center gap-8 md:flex"
+          aria-label="Main navigation"
+        >
+          {/* =========================
+              HOME
+          ========================== */}
+
+          <Link
+            href="/"
+            onClick={closeAllMenus}
+            className={`font-sans text-[11px] font-normal uppercase tracking-[.15em] transition-colors ${
+              isActive('/')
+                ? 'text-[#b9a47a]'
+                : 'text-neutral-300 hover:text-white'
+            }`}
+          >
+            <span className={`relative ${isActive('/') ? 'text-[#b9a47a]' : ''}`}>
+              Home
+              {isActive('/') && (
+                <span
+                  className="absolute -bottom-2 left-0 right-0 h-px bg-[#b9a47a]"
+                  aria-hidden="true"
+                />
+              )}
+            </span>
+          </Link>
+
+          {/* =========================
+              SERVICES
+          ========================== */}
+
+          <div
+            ref={servicesRef}
+            className="relative"
+            onMouseEnter={() => {
+              setServicesOpen(true);
+              setAreasOpen(false);
+            }}
+            onMouseLeave={() => {
+              setServicesOpen(false);
+            }}
+          >
+            <button
+              type="button"
+              aria-expanded={servicesOpen}
+              aria-haspopup="true"
+              aria-current={servicesActive ? 'page' : undefined}
+              onClick={() => {
+                setServicesOpen((value) => !value);
+                setAreasOpen(false);
+              }}
+              className={`inline-flex appearance-none items-center gap-1 border-0 bg-transparent p-0 font-sans text-[11px] font-normal uppercase leading-normal tracking-[.15em] transition-colors ${
+                servicesActive
+                  ? 'text-[#b9a47a]'
+                  : 'text-neutral-300 hover:text-white'
+              }`}
             >
-              <span>Services</span>
-              <ChevronDown size={13} aria-hidden="true" />
-            </Link>
-            <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 translate-y-2 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+              <span className={`relative text-[11px] leading-normal ${servicesActive ? 'text-[#b9a47a]' : ''}`}>
+                Services
+                {servicesActive && (
+                  <span
+                    className="absolute -bottom-2 left-0 right-0 h-px bg-[#b9a47a]"
+                    aria-hidden="true"
+                  />
+                )}
+              </span>
+
+              <ChevronDown
+                size={13}
+                aria-hidden="true"
+                className={`transition-transform duration-200 ${
+                  servicesOpen ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+
+            {/* SERVICES DROPDOWN */}
+
+            <div
+              className={`absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4 transition-all duration-200 ${
+                servicesOpen
+                  ? 'visible translate-y-0 opacity-100'
+                  : 'invisible translate-y-2 opacity-0'
+              }`}
+            >
               <div className="border border-white/10 bg-[#0b0c0d] p-2 shadow-2xl">
-                {serviceNavigation.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="block px-4 py-3 text-[10px] tracking-[.12em] text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {serviceNavigation.map((link) => {
+                  const active = isActive(link.href);
+
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={closeAllMenus}
+                      className={`block px-4 py-3 font-sans text-[10px] font-normal uppercase tracking-[.12em] transition-colors ${
+                        active
+                          ? 'bg-white/5 text-[#b9a47a]'
+                          : 'text-neutral-300 hover:bg-white/5 hover:text-white'
+                      }`}
+                    >
+                      <span className="flex items-center justify-between">
+                        {link.label}
+
+                        {active && (
+                          <span
+                            className="ml-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b9a47a]"
+                            aria-hidden="true"
+                          />
+                        )}
+                      </span>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
-          <div className="group relative">
-            <Link
-              href="/service-areas"
-              className="flex items-center gap-1 transition-colors hover:text-white"
+
+          {/* =========================
+              SERVICE AREAS
+          ========================== */}
+
+          <div
+            ref={areasRef}
+            className="relative"
+            onMouseEnter={() => {
+              setAreasOpen(true);
+              setServicesOpen(false);
+            }}
+            onMouseLeave={() => {
+              setAreasOpen(false);
+            }}
+          >
+            <button
+              type="button"
+              aria-expanded={areasOpen}
+              aria-haspopup="true"
+              aria-current={areasActive ? 'page' : undefined}
+              onClick={() => {
+                setAreasOpen((value) => !value);
+                setServicesOpen(false);
+              }}
+              className={`inline-flex appearance-none items-center gap-1 border-0 bg-transparent p-0 font-sans text-[11px] font-normal uppercase leading-normal tracking-[.15em] transition-colors ${
+                areasActive
+                  ? 'text-[#b9a47a]'
+                  : 'text-neutral-300 hover:text-white'
+              }`}
             >
-              <span>Service Areas</span>
-              <ChevronDown size={13} aria-hidden="true" />
-            </Link>
-            <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 translate-y-2 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+              <span className={`relative text-[11px] leading-normal ${areasActive ? 'text-[#b9a47a]' : ''}`}>
+                Service Areas
+                {areasActive && (
+                  <span
+                    className="absolute -bottom-2 left-0 right-0 h-px bg-[#b9a47a]"
+                    aria-hidden="true"
+                  />
+                )}
+              </span>
+
+              <ChevronDown
+                size={13}
+                aria-hidden="true"
+                className={`transition-transform duration-200 ${
+                  areasOpen ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+
+            {/* SERVICE AREAS DROPDOWN */}
+
+            <div
+              className={`absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4 transition-all duration-200 ${
+                areasOpen
+                  ? 'visible translate-y-0 opacity-100'
+                  : 'invisible translate-y-2 opacity-0'
+              }`}
+            >
               <div className="border border-white/10 bg-[#0b0c0d] p-2 shadow-2xl">
-                {areaNavigation.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="block px-4 py-3 text-[10px] tracking-[.12em] text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {areaNavigation.map((link) => {
+                  const active = isActive(link.href);
+
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={closeAllMenus}
+                      className={`block px-4 py-3 font-sans text-[10px] font-normal uppercase tracking-[.12em] transition-colors ${
+                        active
+                          ? 'bg-white/5 text-[#b9a47a]'
+                          : 'text-neutral-300 hover:bg-white/5 hover:text-white'
+                      }`}
+                    >
+                      <span className="flex items-center justify-between">
+                        {link.label}
+
+                        {active && (
+                          <span
+                            className="ml-3 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b9a47a]"
+                            aria-hidden="true"
+                          />
+                        )}
+                      </span>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
-          {primaryNavigation.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="transition-colors hover:text-white"
-            >
-              {link.label}
-            </Link>
-          ))}
+
+          {/* =========================
+              PRIMARY NAVIGATION
+              HOME FILTERED OUT
+          ========================== */}
+
+          {primaryNavigation
+            .filter((link) => link.href !== '/')
+            .map((link) => {
+              const active = isActive(link.href);
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeAllMenus}
+                  className={`font-sans text-[11px] font-normal uppercase tracking-[.15em] transition-colors ${
+                    active
+                      ? 'text-[#b9a47a]'
+                      : 'text-neutral-300 hover:text-white'
+                  }`}
+                >
+                  <span className={`relative ${active ? 'text-[#b9a47a]' : ''}`}>
+                    {link.label}
+                    {active && (
+                      <span
+                        className="absolute -bottom-2 left-0 right-0 h-px bg-[#b9a47a]"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </span>
+                </Link>
+              );
+            })}
         </nav>
 
-        {/* Desktop CTA */}
-        <div className="hidden items-center gap-6 md:flex">
-          {/* WhatsApp */}
-          {isConfigured(site.whatsapp) && <a href={`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" className="flex h-10 w-10 items-center justify-center border border-green-500/40 text-green-400 transition hover:border-green-400 hover:bg-green-400/10"><FaWhatsapp size={21} className="text-green-500" /></a>}
+        {/* =========================
+            DESKTOP CTA
+        ========================== */}
 
-          {/* Contact Number */}
+        <div className="hidden items-center gap-6 md:flex">
           {isConfigured(site.phone) && (
             <a
               href={`tel:${site.phone.replace(/\s+/g, '')}`}
-              className="phone-blink p-2   border-white/40 border-2 flex items-center gap-2.5 text-[15px] lg:text-[17px] font-bold tracking-wide text-white transition-colors hover:text-[#b9a47a] whitespace-nowrap"
+              className="phone-blink flex items-center gap-2.5 whitespace-nowrap border-2 border-white/40 p-2 text-[15px] font-bold tracking-wide text-white transition-colors hover:border-[#b9a47a] hover:text-[#b9a47a] lg:text-[17px]"
               aria-label={`Call us at ${site.phone}`}
             >
-              <Phone size={18} className="text-[#b9a47a] shrink-0" />
-              <span>{site.phone}</span>
+              <Phone
+                size={27}
+                className="shrink-0 text-[#b9a47a]"
+                aria-hidden="true"
+              />
             </a>
           )}
 
-          {/* Booking
           <Link
             href="/#quote-form"
+            onClick={closeAllMenus}
             className="btn"
           >
             GET A QUOTE
-          </Link> */}
+          </Link>
         </div>
 
-        {/* Mobile Header Actions */}
+        {/* =========================
+            MOBILE HEADER ACTIONS
+        ========================== */}
+
         <div className="flex items-center gap-1 md:hidden">
           {isConfigured(site.phone) && (
             <a
               href={`tel:${site.phone.replace(/\s+/g, '')}`}
               aria-label={`Call us at ${site.phone}`}
-              className="phone-blink relative z-50 flex h-11 w-11 items-center justify-center text-[#b9a47a] transition hover:text-white"
+              className="phone-blink relative z-[60] flex h-11 w-11 items-center justify-center text-[#b9a47a] transition hover:text-white"
             >
-              <Phone size={20} />
+              <Phone
+                size={20}
+                aria-hidden="true"
+              />
             </a>
           )}
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"
-            className="relative z-50 flex h-11 w-11 items-center justify-center"
-            onClick={() => setOpen((value) => !value)}
+            onClick={() => {
+              setMobileOpen((value) => !value);
+              setServicesOpen(false);
+              setAreasOpen(false);
+            }}
+            className="relative z-[60] flex h-11 w-11 items-center justify-center text-white"
           >
-            {open ? (
+            {mobileOpen ? (
               <X
                 size={24}
                 strokeWidth={1.5}
+                aria-hidden="true"
               />
             ) : (
               <Menu
                 size={24}
                 strokeWidth={1.5}
+                aria-hidden="true"
               />
             )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* =========================
+          MOBILE NAVIGATION
+      ========================== */}
+
       <div
         id="mobile-navigation"
-        className={`absolute inset-x-0 top-20 border-t border-white/10 bg-[#0b0c0d] shadow-2xl transition-all duration-200 md:hidden ${
-          open
+        className={`fixed inset-x-0 top-20 z-50 border-t border-white/10 bg-[#0b0c0d] shadow-2xl transition-all duration-200 md:hidden ${
+          mobileOpen
             ? 'visible translate-y-0 opacity-100'
             : 'invisible -translate-y-2 opacity-0'
         }`}
       >
-        <nav className="px-5 py-6 sm:px-6">
-          {/* Links */}
+        <nav
+          className="max-h-[calc(100vh-5rem)] overflow-y-auto px-5 py-6 sm:px-6"
+          aria-label="Mobile navigation"
+        >
           <div className="grid gap-1">
+
+            {/* HOME */}
+
             <Link
-              href="/services"
-              onClick={closeMenu}
-              className="block py-3 text-sm uppercase tracking-[.15em] text-neutral-200 transition-colors hover:text-white"
+              href="/"
+              onClick={closeMobileMenu}
+              className={`block py-3 font-sans text-sm font-normal uppercase tracking-[.15em] transition-colors ${
+                isActive('/')
+                  ? 'text-[#b9a47a]'
+                  : 'text-neutral-200 hover:text-white'
+              }`}
             >
-              Services
+              <span className={`relative ${isActive('/') ? 'text-[#b9a47a]' : ''}`}>
+                Home
+                {isActive('/') && (
+                  <span
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-[#b9a47a]"
+                    aria-hidden="true"
+                  />
+                )}
+              </span>
             </Link>
-            <div className="mb-2 ml-4 grid gap-1 border-l border-white/10 pl-4">
-              {serviceNavigation.slice(1).map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="block py-2 text-xs uppercase tracking-[.12em] text-neutral-400 transition-colors hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-            <Link
-              href="/service-areas"
-              onClick={closeMenu}
-              className="block py-3 text-sm uppercase tracking-[.15em] text-neutral-200 transition-colors hover:text-white"
+
+            {/* SERVICES */}
+
+            <button
+              type="button"
+              aria-expanded={servicesOpen}
+              aria-current={servicesActive ? 'page' : undefined}
+              onClick={() => {
+                setServicesOpen((value) => !value);
+                setAreasOpen(false);
+              }}
+              className={`flex w-full items-center justify-between py-3 text-left font-sans text-sm font-normal uppercase tracking-[.15em] transition-colors ${
+                servicesActive
+                  ? 'text-[#b9a47a]'
+                  : 'text-neutral-200 hover:text-white'
+              }`}
             >
-              Service Areas
-            </Link>
-            <div className="mb-2 ml-4 grid gap-1 border-l border-white/10 pl-4">
-              {areaNavigation.slice(1).map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="block py-2 text-xs uppercase tracking-[.12em] text-neutral-400 transition-colors hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              <span className={servicesActive ? 'text-[#b9a47a]' : ''}>Services</span>
+
+              <ChevronDown
+                size={17}
+                aria-hidden="true"
+                className={`transition-transform duration-200 ${
+                  servicesOpen ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+
+            {/* SERVICES CHILDREN */}
+
+            <div
+              className={`ml-4 grid overflow-hidden border-l border-white/10 pl-4 transition-all duration-200 ${
+                servicesOpen
+                  ? 'mb-2 max-h-[500px] opacity-100'
+                  : 'max-h-0 opacity-0'
+              }`}
+            >
+              {serviceNavigation.map((link) => {
+                const active = isActive(link.href);
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMobileMenu}
+                    className={`flex items-center justify-between py-2 font-sans text-xs font-normal uppercase tracking-[.12em] transition-colors ${
+                      active
+                        ? 'text-[#b9a47a]'
+                        : 'text-neutral-400 hover:text-white'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+
+                    {active && (
+                      <span
+                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#b9a47a]"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </div>
-            {primaryNavigation.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={closeMenu}
-                className="block py-3 text-sm uppercase tracking-[.15em] text-neutral-200 transition-colors hover:text-white"
-              >
-                {link.label}
-              </Link>
-            ))}
+
+            {/* SERVICE AREAS */}
+
+            <button
+              type="button"
+              aria-expanded={areasOpen}
+              aria-current={areasActive ? 'page' : undefined}
+              onClick={() => {
+                setAreasOpen((value) => !value);
+                setServicesOpen(false);
+              }}
+              className={`flex w-full items-center justify-between py-3 text-left font-sans text-sm font-normal uppercase tracking-[.15em] transition-colors ${
+                areasActive
+                  ? 'text-[#b9a47a]'
+                  : 'text-neutral-200 hover:text-white'
+              }`}
+            >
+              <span className={areasActive ? 'text-[#b9a47a]' : ''}>Service Areas</span>
+
+              <ChevronDown
+                size={17}
+                aria-hidden="true"
+                className={`transition-transform duration-200 ${
+                  areasOpen ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+
+            {/* SERVICE AREA CHILDREN */}
+
+            <div
+              className={`ml-4 grid overflow-hidden border-l border-white/10 pl-4 transition-all duration-200 ${
+                areasOpen
+                  ? 'mb-2 max-h-[500px] opacity-100'
+                  : 'max-h-0 opacity-0'
+              }`}
+            >
+              {areaNavigation.map((link) => {
+                const active = isActive(link.href);
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMobileMenu}
+                    className={`flex items-center justify-between py-2 font-sans text-xs font-normal uppercase tracking-[.12em] transition-colors ${
+                      active
+                        ? 'text-[#b9a47a]'
+                        : 'text-neutral-400 hover:text-white'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+
+                    {active && (
+                      <span
+                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#b9a47a]"
+                        aria-hidden="true"
+                      />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* PRIMARY NAVIGATION */}
+
+            {primaryNavigation
+              .filter((link) => link.href !== '/')
+              .map((link) => {
+                const active = isActive(link.href);
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMobileMenu}
+                    className={`block py-3 font-sans text-sm font-normal uppercase tracking-[.15em] transition-colors ${
+                      active
+                        ? 'text-[#b9a47a]'
+                        : 'text-neutral-200 hover:text-white'
+                    }`}
+                  >
+                    <span className={`relative ${active ? 'text-[#b9a47a]' : ''}`}>
+                      {link.label}
+                      {active && (
+                        <span
+                          className="absolute -bottom-1 left-0 right-0 h-px bg-[#b9a47a]"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </span>
+                  </Link>
+                );
+              })}
           </div>
 
-          {/* Mobile CTA */}
-          <div className="mt-5 grid gap-3 border-t border-white/10 pt-5">
-            {/* WhatsApp */}
-            {isConfigured(site.whatsapp) && <a href={`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="flex min-h-12 items-center justify-center gap-2 border border-green-500/30 text-green-400 transition hover:border-green-400 hover:bg-green-400/10"><FaWhatsapp size={20} /><span>WhatsApp</span></a>}
+          {/* MOBILE CTA */}
 
-            {/* Call */}
+          <div className="mt-5 grid gap-3 border-t border-white/10 pt-5">
+
+            {/* CALL */}
+
             {isConfigured(site.phone) && (
               <a
                 href={`tel:${site.phone.replace(/\s+/g, '')}`}
-                onClick={closeMenu}
+                onClick={closeMobileMenu}
                 className="btn secondary phone-blink flex min-h-12 items-center justify-center gap-2 text-sm font-bold tracking-wide"
               >
-                <Phone size={17} className="text-[#b9a47a]" />
+                <Phone
+                  size={17}
+                  className="text-[#b9a47a]"
+                  aria-hidden="true"
+                />
+
                 <span>Call {site.phone}</span>
               </a>
             )}
 
-            {/* Booking */}
+            {/* GET A QUOTE */}
+
             <Link
               href="/#quote-form"
-              onClick={closeMenu}
+              onClick={closeMobileMenu}
               className="btn flex min-h-12 items-center justify-center"
             >
               GET A QUOTE
@@ -241,20 +717,26 @@ export function Nav({ site = defaultSite }: { site?: typeof defaultSite }) {
         </nav>
       </div>
 
-      {/* Mobile Backdrop */}
-      {open && (
+      {/* =========================
+          MOBILE BACKDROP
+      ========================== */}
+
+      {mobileOpen && (
         <button
           type="button"
           aria-label="Close menu"
-          onClick={closeMenu}
-          className="fixed inset-0 -z-10 bg-black/50 md:hidden"
+          onClick={closeMobileMenu}
+          className="fixed inset-0 z-40 bg-black/60 md:hidden"
         />
       )}
     </header>
   );
 }
 
+/* =========================
+   PHONE CONFIGURATION
+========================= */
+
 function isConfigured(value: string) {
   return Boolean(value && !value.startsWith('['));
 }
- 
